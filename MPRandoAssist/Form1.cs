@@ -25,6 +25,7 @@ namespace MPRandoAssist
         #region Auto Refill Timestamps
         internal long AutoRefill_Missiles_LastTime = 0;
         internal long AutoRefill_PowerBombs_LastTime = 0;
+        internal long Regenerate_Health_LastTime = 0;
         #endregion
 
         #region Constants
@@ -32,6 +33,9 @@ namespace MPRandoAssist
         internal const String UNOBTAINED = "X";
         internal const long AUTOREFILL_DELAY_IN_SEC = 2;
         internal const long AUTOREFILL_DELAY = AUTOREFILL_DELAY_IN_SEC * 1000;
+        internal const long REGEN_HEALTH_COOLDOWN_IN_MIN = 2;
+        internal const long REGEN_HEALTH_COOLDOWN_IN_SEC = REGEN_HEALTH_COOLDOWN_IN_MIN * 60;
+        internal const long REGEN_HEALTH_COOLDOWN = REGEN_HEALTH_COOLDOWN_IN_SEC * 1000;
 
         internal const long OFF_MORPHBALLBOMBS_COUNT = 0x457D1B;
         internal const long OFF_GAME_STATUS = 0x457F4D;
@@ -530,7 +534,7 @@ namespace MPRandoAssist
                 return;
             try
             {
-                if (Game_Code != "GM8E01")
+                if (!Game_Code.StartsWith("GM8"))
                     return;
                 if (Game_Status != 1)
                     return;
@@ -614,7 +618,23 @@ namespace MPRandoAssist
 
         private void button1_Click(object sender, EventArgs e)
         {
+            long curTime = GetCurTimeInMilliseconds();
+            if (Health == MaxHealth)
+            {
+                Regenerate_Health_LastTime = curTime + REGEN_HEALTH_COOLDOWN;
+                MessageBox.Show("You have all your HP!");
+                return;
+            }
+            if (MaxHealth == 0)
+                return;
+            if (curTime - Regenerate_Health_LastTime <= REGEN_HEALTH_COOLDOWN)
+            {
+                DateTime remainingTime = new DateTime((REGEN_HEALTH_COOLDOWN - (curTime - Regenerate_Health_LastTime))*TimeSpan.TicksPerMillisecond);
+                MessageBox.Show("You can regenerate in "+(remainingTime.Minute == 0 ? "" : remainingTime.Minute+" minute"+(remainingTime.Minute > 1 ? "s ":" "))+ (remainingTime.Second == 0 ? "" : remainingTime.Second + " second" + (remainingTime.Second > 1 ? "s" : "")));
+                return;
+            }
             Health = MaxHealth;
+            Regenerate_Health_LastTime = curTime;
         }
     }
 }

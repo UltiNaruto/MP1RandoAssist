@@ -494,7 +494,7 @@ namespace MPRandoAssist
                     MessageBox.Show("Metroid Prime is not running!\r\nExiting...");
                     this.Close();
                 }
-                if (Game_Code != "GM8E01")
+                if (!Game_Code.StartsWith("GM8"))
                 {
                     MessageBox.Show("Metroid Prime is not running!\r\nExiting...");
                     this.Close();
@@ -584,9 +584,11 @@ namespace MPRandoAssist
 
         private void AutoRefillMissiles()
         {
+            long curTime = GetCurTimeInMilliseconds();
+            if (Missiles == MaxMissiles)
+                AutoRefill_Missiles_LastTime = curTime + AUTOREFILL_DELAY;
             if (MaxMissiles == 0)
                 return;
-            long curTime = GetCurTimeInMilliseconds();
             if (Missiles + 1 > MaxMissiles)
                 return;
             if (curTime - AutoRefill_Missiles_LastTime <= AUTOREFILL_DELAY)
@@ -597,9 +599,11 @@ namespace MPRandoAssist
 
         private void AutoRefillPowerBombs()
         {
+            long curTime = GetCurTimeInMilliseconds();
+            if (PowerBombs == MaxPowerBombs)
+                AutoRefill_PowerBombs_LastTime = curTime + AUTOREFILL_DELAY;
             if (MaxPowerBombs == 0)
                 return;
-            long curTime = GetCurTimeInMilliseconds();
             if (PowerBombs + 1 > MaxPowerBombs)
                 return;
             if (curTime - AutoRefill_PowerBombs_LastTime <= AUTOREFILL_DELAY)

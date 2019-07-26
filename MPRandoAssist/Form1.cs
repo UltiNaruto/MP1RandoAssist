@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -535,7 +536,12 @@ namespace MPRandoAssist
             try
             {
                 if (!Game_Code.StartsWith("GM8"))
+				{
+                    new Thread(() => MessageBox.Show("Either Dolphin or the game is not running!\r\nExiting...")).Start();
+                    this.Close();
+					this.Exiting = true;
                     return;
+				}
                 if (Game_Status != 1)
                     return;
                 this.label1.Text = "Missiles : " + Missiles + " / " + MaxMissiles;
@@ -564,7 +570,7 @@ namespace MPRandoAssist
                 this.label12.Text = "Ice Beam : " + (HaveIceBeam ? OBTAINED : UNOBTAINED);
                 this.label13.Text = "Wave Beam : " + (HaveWaveBeam ? OBTAINED : UNOBTAINED);
                 this.label14.Text = "Charge Beam : " + (HaveChargeBeam ? OBTAINED : UNOBTAINED);
-                this.label15.Text = "Grapple Beam : " + (HavePlasmaBeam ? OBTAINED : UNOBTAINED);
+                this.label15.Text = "Grapple Beam : " + (HaveGrappleBeam ? OBTAINED : UNOBTAINED);
                 this.label16.Text = "Spider Ball : " + (HaveSpiderBall ? OBTAINED : UNOBTAINED);
                 this.label17.Text = "Boost Ball : " + (HaveBoostBall ? OBTAINED : UNOBTAINED);
                 this.label18.Text = "Power Bombs : " + (MaxPowerBombs > 0 ? OBTAINED : UNOBTAINED);
@@ -579,9 +585,9 @@ namespace MPRandoAssist
             {
                 if (!this.Exiting)
                 {
-                    this.Exiting = true;
-                    MessageBox.Show("Either Dolphin or the game is not running!\r\nExiting...");
+                    new Thread(() => MessageBox.Show("Either Dolphin or the game is not running!\r\nExiting...")).Start();
                     this.Close();
+					this.Exiting = true;
                 }
             }
         }

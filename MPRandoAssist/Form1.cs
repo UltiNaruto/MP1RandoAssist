@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -15,6 +16,8 @@ namespace MPRandoAssist
 {
     public partial class Form1 : Form
     {
+        bool IsLoadingSettings = false;
+
         #region Dolphin Instances and Checks
         Process dolphin;
         long RAMBaseAddr;
@@ -113,6 +116,7 @@ namespace MPRandoAssist
         static extern int VirtualQueryEx(IntPtr hProcess, IntPtr lpAddress, out MEMORY_BASIC_INFORMATION lpBuffer, uint dwLength);
         #endregion
 
+        #region Dolphin
         public String Game_Code
         {
             get
@@ -120,6 +124,7 @@ namespace MPRandoAssist
                 return Encoding.ASCII.GetString(MemoryUtils.Read(this.dolphin, this.RAMBaseAddr, 6)).Trim('\0');
             }
         }
+        #endregion
 
         #region Metroid Prime
         internal byte MorphBallBombs
@@ -442,6 +447,34 @@ namespace MPRandoAssist
             InitializeComponent();
         }
 
+        void LoadSettings()
+        {
+            if (!File.Exists("MPRandoAssist.ini"))
+                SaveSettings();
+            using (var file = new StreamReader(File.OpenRead("MPRandoAssist.ini")))
+            {
+                IsLoadingSettings = true;
+                while (!file.EndOfStream)
+                {
+                    String line = file.ReadLine();
+                    if (!line.Contains('='))
+                        continue;
+                    String[] setting = line.Split('=');
+                    if (setting[0] == "DarkMode")
+                        this.checkBox1.Checked = setting[1] == "ON";
+                }
+                IsLoadingSettings = false;
+            }
+        }
+
+        void SaveSettings()
+        {
+            using (var file = new StreamWriter(File.OpenWrite("MPRandoAssist.ini")))
+            {
+                file.WriteLine("DarkMode="+(this.checkBox1.Checked?"ON":"OFF"));
+            }
+        }
+
         long GetCurTimeInMilliseconds()
         {
             return DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
@@ -484,6 +517,7 @@ namespace MPRandoAssist
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            LoadSettings();
             try
             {
                 this.dolphin = Process.GetProcessesByName("dolphin").Length == 0 ? null : Process.GetProcessesByName("dolphin").First();
@@ -641,6 +675,40 @@ namespace MPRandoAssist
             }
             Health = MaxHealth;
             Regenerate_Health_LastTime = curTime;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBox1.Checked)
+            {
+                this.BackColor = Color.Black;
+                this.ForeColor = Color.Gray;
+                this.groupBox1.ForeColor = Color.Gray;
+                this.groupBox2.ForeColor = Color.Gray;
+                this.comboBox1.BackColor = Color.Black;
+                this.comboBox1.ForeColor = Color.Gray;
+                this.comboBox2.BackColor = Color.Black;
+                this.comboBox2.ForeColor = Color.Gray;
+                this.comboBox3.BackColor = Color.Black;
+                this.comboBox3.ForeColor = Color.Gray;
+                this.button1.BackColor = Color.Black;
+            }
+            else
+            {
+                this.BackColor = Color.LightGoldenrodYellow;
+                this.ForeColor = Color.Black;
+                this.groupBox1.ForeColor = Color.Black;
+                this.groupBox2.ForeColor = Color.Black;
+                this.comboBox1.BackColor = Color.LightGoldenrodYellow;
+                this.comboBox1.ForeColor = Color.Black;
+                this.comboBox2.BackColor = Color.LightGoldenrodYellow;
+                this.comboBox2.ForeColor = Color.Black;
+                this.comboBox3.BackColor = Color.LightGoldenrodYellow;
+                this.comboBox3.ForeColor = Color.Black;
+                this.button1.BackColor = Color.LightGoldenrodYellow;
+            }
+            if(!IsLoadingSettings)
+                SaveSettings();
         }
     }
 }

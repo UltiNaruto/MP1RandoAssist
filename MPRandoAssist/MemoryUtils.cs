@@ -59,6 +59,11 @@ namespace MPRandoAssist
             return BitConverter.ToUInt32(Read(proc, address, 4), 0);
         }
 
+        internal static UInt32 ReadUInt32BE(Process proc, long address)
+        {
+            return BitConverter.ToUInt32(Read(proc, address, 4).Reverse().ToArray(), 0);
+        }
+
         internal static UInt64 ReadUInt64(Process proc, long address)
         {
             return BitConverter.ToUInt64(Read(proc, address, 8), 0);

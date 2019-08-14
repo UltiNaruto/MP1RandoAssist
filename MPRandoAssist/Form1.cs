@@ -21,7 +21,6 @@ namespace MPRandoAssist
         #region Dolphin Instances and Checks
         Process dolphin;
         long RAMBaseAddr;
-        long InventoryOffset;
         bool Is32BitProcess;
         bool Exiting = false;
         bool WasInSaveStation = false;
@@ -36,9 +35,10 @@ namespace MPRandoAssist
         #region Constants
         internal const long GCBaseRamAddr = 0x80000000;
         internal const long OFF_CSTATEMANAGER = 0x45A1A8;
-        internal const long OFF_CWORLD = 0x850;
+        internal const long OFF_CSM_CWORLD = 0x850;
         internal const long OFF_ROOM_ID = 0x68;
         internal const long OFF_WORLD_ID = 0x6C;
+        internal const long OFF_CINVENTORY = 0x6FB348;
         internal const String OBTAINED = "O";
         internal const String UNOBTAINED = "X";
         internal const long AUTOREFILL_DELAY_IN_SEC = 2;
@@ -49,44 +49,44 @@ namespace MPRandoAssist
 
         internal const long OFF_MORPHBALLBOMBS_COUNT = 0x457D1B;
         internal const long OFF_GAME_STATUS = 0x457F4D;
-        internal const long OFF_HEALTH = -4;
+        internal const long OFF_HEALTH = 0xC;
         internal const long OFF_CRITICAL_HEALTH = OFF_HEALTH+4;
-        internal const long OFF_ICEBEAM_OBTAINED = 0x27; // 0xDF0BF7
-        internal const long OFF_WAVEBEAM_OBTAINED = 0x2F; // 0xDF0BFF
-        internal const long OFF_PLASMABEAM_OBTAINED = 0x37; // 0xDF0C07
-        internal const long OFF_MISSILES = 0x3B; // 0xDF0C0B
+        internal const long OFF_ICEBEAM_OBTAINED = 0x37;
+        internal const long OFF_WAVEBEAM_OBTAINED = 0x3F;
+        internal const long OFF_PLASMABEAM_OBTAINED = 0x47;
+        internal const long OFF_MISSILES = 0x4B;
         internal const long OFF_MAX_MISSILES = OFF_MISSILES + 4;
-        internal const long OFF_MORPHBALLBOMBS_OBTAINED = 0x4F; // 0xDF0C1F
-        internal const long OFF_POWERBOMBS = 0x53; // 0xDF0C23
+        internal const long OFF_MORPHBALLBOMBS_OBTAINED = 0x5F;
+        internal const long OFF_POWERBOMBS = 0x63;
         internal const long OFF_MAX_POWERBOMBS = OFF_POWERBOMBS + 4;
-        internal const long OFF_FLAMETHROWER_OBTAINED = 0x5F; // 0xDF0C2F
-        internal const long OFF_THERMALVISOR_OBTAINED = 0x67; // 0xDF0C37
-        internal const long OFF_CHARGEBEAM_OBTAINED = 0x6F; // 0xDF0C3F
-        internal const long OFF_SUPERMISSILE_OBTAINED = 0x77; // 0xDF0C47
-        internal const long OFF_GRAPPLEBEAM_OBTAINED = 0x7F; // 0xDF0C4F
-        internal const long OFF_XRAYVISOR_OBTAINED = 0x87; // 0xDF0C57
-        internal const long OFF_ICESPREADER_OBTAINED = 0x8F; // 0xDF0C5F
-        internal const long OFF_SPACEBOOTS_OBTAINED = 0x97; // 0xDF0C67
-        internal const long OFF_MORPHBALL_OBTAINED = 0x9F; // 0xDF0C6F
-        internal const long OFF_BOOSTBALL_OBTAINED = 0xAF; // 0xDF0C7F
-        internal const long OFF_SPIDERBALL_OBTAINED = 0xB7; // 0xDF0C87
-        internal const long OFF_GRAVITYSUIT_OBTAINED = 0xC7; // 0xDF0C97
-        internal const long OFF_VARIASUIT_OBTAINED = 0xCF; // 0xDF0C9F
-        internal const long OFF_PHAZONSUIT_OBTAINED = 0xD7; // 0xDF0CA7
-        internal const long OFF_ENERGYTANKS_OBTAINED = 0xDF; // 0xDF0CAF
-        internal const long OFF_WAVEBUSTER_OBTAINED = 0xFF; // 0xDF0CCF
-        internal const long OFF_ARTIFACT_OF_TRUTH_OBTAINED = 0x107;
-        internal const long OFF_ARTIFACT_OF_STRENGTH_OBTAINED = 0x10F;
-        internal const long OFF_ARTIFACT_OF_ELDER_OBTAINED = 0x117;
-        internal const long OFF_ARTIFACT_OF_WILD_OBTAINED = 0x11F;
-        internal const long OFF_ARTIFACT_OF_LIFEGIVER_OBTAINED = 0x127;
-        internal const long OFF_ARTIFACT_OF_WARRIOR_OBTAINED = 0x12F;
-        internal const long OFF_ARTIFACT_OF_CHOZO_OBTAINED = 0x137;
-        internal const long OFF_ARTIFACT_OF_NATURE_OBTAINED = 0x13F;
-        internal const long OFF_ARTIFACT_OF_SUN_OBTAINED = 0x147;
-        internal const long OFF_ARTIFACT_OF_WORLD_OBTAINED = 0x14F;
-        internal const long OFF_ARTIFACT_OF_SPIRIT_OBTAINED = 0x157;
-        internal const long OFF_ARTIFACT_OF_NEWBORN_OBTAINED = 0x15F;
+        internal const long OFF_FLAMETHROWER_OBTAINED = 0x6F;
+        internal const long OFF_THERMALVISOR_OBTAINED = 0x77;
+        internal const long OFF_CHARGEBEAM_OBTAINED = 0x7F;
+        internal const long OFF_SUPERMISSILE_OBTAINED = 0x87;
+        internal const long OFF_GRAPPLEBEAM_OBTAINED = 0x8F;
+        internal const long OFF_XRAYVISOR_OBTAINED = 0x97;
+        internal const long OFF_ICESPREADER_OBTAINED = 0x9F;
+        internal const long OFF_SPACEBOOTS_OBTAINED = 0xA7;
+        internal const long OFF_MORPHBALL_OBTAINED = 0xAF;
+        internal const long OFF_BOOSTBALL_OBTAINED = 0xBF;
+        internal const long OFF_SPIDERBALL_OBTAINED = 0xC7;
+        internal const long OFF_GRAVITYSUIT_OBTAINED = 0xD7;
+        internal const long OFF_VARIASUIT_OBTAINED = 0xDF;
+        internal const long OFF_PHAZONSUIT_OBTAINED = 0xE7;
+        internal const long OFF_ENERGYTANKS_OBTAINED = 0xEF;
+        internal const long OFF_WAVEBUSTER_OBTAINED = 0x10F;
+        internal const long OFF_ARTIFACT_OF_TRUTH_OBTAINED = 0x117;
+        internal const long OFF_ARTIFACT_OF_STRENGTH_OBTAINED = 0x11F;
+        internal const long OFF_ARTIFACT_OF_ELDER_OBTAINED = 0x127;
+        internal const long OFF_ARTIFACT_OF_WILD_OBTAINED = 0x12F;
+        internal const long OFF_ARTIFACT_OF_LIFEGIVER_OBTAINED = 0x137;
+        internal const long OFF_ARTIFACT_OF_WARRIOR_OBTAINED = 0x13F;
+        internal const long OFF_ARTIFACT_OF_CHOZO_OBTAINED = 0x147;
+        internal const long OFF_ARTIFACT_OF_NATURE_OBTAINED = 0x14F;
+        internal const long OFF_ARTIFACT_OF_SUN_OBTAINED = 0x157;
+        internal const long OFF_ARTIFACT_OF_WORLD_OBTAINED = 0x15F;
+        internal const long OFF_ARTIFACT_OF_SPIRIT_OBTAINED = 0x167;
+        internal const long OFF_ARTIFACT_OF_NEWBORN_OBTAINED = 0x16F;
         #endregion
 
         #region C Imports
@@ -222,21 +222,27 @@ namespace MPRandoAssist
 
         internal const byte MaxMorphBallBombs = 3;
 
-        internal sbyte Game_Status
+        internal bool IsPlayerIngame
         {
             get
             {
-                return MemoryUtils.ReadInt8(this.dolphin, this.RAMBaseAddr + OFF_GAME_STATUS);
+                return MemoryUtils.ReadInt8(this.dolphin, this.RAMBaseAddr + OFF_GAME_STATUS) == 1;
             }
         }
 
         internal ushort Health
         {
             get {
-                return (ushort)MemoryUtils.ReadFloat32(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_HEALTH);
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return 0;
+                return (ushort)MemoryUtils.ReadFloat32(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_HEALTH);
             }
             set {
-                MemoryUtils.WriteFloat32(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_HEALTH, (float)value);
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteFloat32(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_HEALTH, (float)value);
             }
         }
 
@@ -244,7 +250,10 @@ namespace MPRandoAssist
         {
             get
             {
-                return (ushort)(MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ENERGYTANKS_OBTAINED) * 100 + 99);
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return 0;
+                return (ushort)(MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_ENERGYTANKS_OBTAINED) * 100 + 99);
             }
         }
 
@@ -252,11 +261,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ICEBEAM_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_ICEBEAM_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ICEBEAM_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_ICEBEAM_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
@@ -264,11 +279,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_WAVEBEAM_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_WAVEBEAM_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_WAVEBEAM_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_WAVEBEAM_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
@@ -276,11 +297,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_PLASMABEAM_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_PLASMABEAM_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_PLASMABEAM_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_PLASMABEAM_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
@@ -288,11 +315,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt16(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_MISSILES);
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return 0;
+                return MemoryUtils.ReadUInt16(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_MISSILES);
             }
             set
             {
-                MemoryUtils.WriteUInt16(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_MISSILES, value);
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt16(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_MISSILES, value);
             }
         }
 
@@ -300,11 +333,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt16(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_MAX_MISSILES);
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return 0;
+                return MemoryUtils.ReadUInt16(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_MAX_MISSILES);
             }
             set
             {
-                MemoryUtils.WriteUInt16(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_MAX_MISSILES, value);
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt16(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_MAX_MISSILES, value);
             }
         }
 
@@ -312,11 +351,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_MORPHBALLBOMBS_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_MORPHBALLBOMBS_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_MORPHBALLBOMBS_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_MORPHBALLBOMBS_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
@@ -324,11 +369,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_POWERBOMBS);
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return 0;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_POWERBOMBS);
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_POWERBOMBS, value);
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_POWERBOMBS, value);
             }
         }
 
@@ -336,11 +387,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_MAX_POWERBOMBS);
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return 0;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_MAX_POWERBOMBS);
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_MAX_POWERBOMBS, value);
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_MAX_POWERBOMBS, value);
             }
         }
 
@@ -348,11 +405,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_FLAMETHROWER_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_FLAMETHROWER_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_FLAMETHROWER_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_FLAMETHROWER_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
@@ -360,11 +423,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_THERMALVISOR_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_THERMALVISOR_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_THERMALVISOR_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_THERMALVISOR_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
@@ -372,11 +441,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_CHARGEBEAM_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_CHARGEBEAM_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_CHARGEBEAM_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_CHARGEBEAM_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
@@ -384,11 +459,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_SUPERMISSILE_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_SUPERMISSILE_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_SUPERMISSILE_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_SUPERMISSILE_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
@@ -396,11 +477,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_GRAPPLEBEAM_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_GRAPPLEBEAM_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_GRAPPLEBEAM_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_GRAPPLEBEAM_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
@@ -408,11 +495,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_XRAYVISOR_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_XRAYVISOR_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_XRAYVISOR_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_XRAYVISOR_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
@@ -420,11 +513,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ICESPREADER_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_ICESPREADER_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ICESPREADER_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_ICESPREADER_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
@@ -432,21 +531,34 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_SPACEBOOTS_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_SPACEBOOTS_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_SPACEBOOTS_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_SPACEBOOTS_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
         internal bool HaveMorphBall
         {
-            get {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_MORPHBALL_OBTAINED) > 0;
+            get
+            {
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_MORPHBALL_OBTAINED) > 0;
             }
             set {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_MORPHBALL_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_MORPHBALL_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
@@ -454,11 +566,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_BOOSTBALL_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_BOOSTBALL_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_BOOSTBALL_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_BOOSTBALL_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
@@ -466,11 +584,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_SPIDERBALL_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_SPIDERBALL_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_SPIDERBALL_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_SPIDERBALL_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
@@ -478,11 +602,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_GRAVITYSUIT_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_GRAVITYSUIT_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_GRAVITYSUIT_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_GRAVITYSUIT_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
@@ -490,11 +620,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_VARIASUIT_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_VARIASUIT_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_VARIASUIT_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_VARIASUIT_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
@@ -502,11 +638,17 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_PHAZONSUIT_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_PHAZONSUIT_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_PHAZONSUIT_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_PHAZONSUIT_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
@@ -514,44 +656,53 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_WAVEBUSTER_OBTAINED) > 0;
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return false;
+                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_WAVEBUSTER_OBTAINED) > 0;
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_WAVEBUSTER_OBTAINED, (byte)(value ? 1 : 0));
+                long InventoryOffset = GetInventoryOffset();
+                if (InventoryOffset == -1)
+                    return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_WAVEBUSTER_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
         internal bool Artifacts(int index)
         {
+            long InventoryOffset = GetInventoryOffset();
+            if (InventoryOffset == -1)
+                return false;
             if (index < 0)
                 throw new Exception("Index can't be negative");
             switch(index)
             {
                 case 0:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_TRUTH_OBTAINED) > 0;
+                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_ARTIFACT_OF_TRUTH_OBTAINED) > 0;
                 case 1:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_STRENGTH_OBTAINED) > 0;
+                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_ARTIFACT_OF_STRENGTH_OBTAINED) > 0;
                 case 2:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_ELDER_OBTAINED) > 0;
+                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_ARTIFACT_OF_ELDER_OBTAINED) > 0;
                 case 3:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_WILD_OBTAINED) > 0;
+                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_ARTIFACT_OF_WILD_OBTAINED) > 0;
                 case 4:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_LIFEGIVER_OBTAINED) > 0;
+                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_ARTIFACT_OF_LIFEGIVER_OBTAINED) > 0;
                 case 5:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_WARRIOR_OBTAINED) > 0;
+                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_ARTIFACT_OF_WARRIOR_OBTAINED) > 0;
                 case 6:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_CHOZO_OBTAINED) > 0;
+                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_ARTIFACT_OF_CHOZO_OBTAINED) > 0;
                 case 7:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_NATURE_OBTAINED) > 0;
+                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_ARTIFACT_OF_NATURE_OBTAINED) > 0;
                 case 8:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_SUN_OBTAINED) > 0;
+                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_ARTIFACT_OF_SUN_OBTAINED) > 0;
                 case 9:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_WORLD_OBTAINED) > 0;
+                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_ARTIFACT_OF_WORLD_OBTAINED) > 0;
                 case 10:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_SPIRIT_OBTAINED) > 0;
+                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_ARTIFACT_OF_SPIRIT_OBTAINED) > 0;
                 case 11:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_NEWBORN_OBTAINED) > 0;
+                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + InventoryOffset + OFF_ARTIFACT_OF_NEWBORN_OBTAINED) > 0;
                 default:
                     throw new Exception("There are no artifacts past the 12th artifact");
             }
@@ -657,14 +808,13 @@ namespace MPRandoAssist
                     this.Close();
                     return;
                 }
-                this.InventoryOffset = GetInventoryOffset();
                 this.comboBox1.SelectedIndex = 0;
                 this.comboBox1.Update();
                 this.comboBox2.SelectedIndex = 0;
                 this.comboBox2.Update();
                 this.comboBox3.SelectedIndex = 0;
                 this.comboBox3.Update();
-                this.timer1.Enabled = true;
+                this.timer1.Start();
             } catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -674,7 +824,9 @@ namespace MPRandoAssist
 
         private long GetWorldOffset()
         {
-            long GC_CWorld = MemoryUtils.ReadUInt32BE(this.dolphin, this.RAMBaseAddr + OFF_CSTATEMANAGER + OFF_CWORLD);
+            if (!IsPlayerIngame)
+                return -1;
+            long GC_CWorld = MemoryUtils.ReadUInt32BE(this.dolphin, this.RAMBaseAddr + OFF_CSTATEMANAGER + OFF_CSM_CWORLD);
             if (GC_CWorld < GCBaseRamAddr)
                 return -1;
             return GC_CWorld - GCBaseRamAddr;
@@ -682,28 +834,21 @@ namespace MPRandoAssist
 
         private long GetInventoryOffset()
         {
-            long result = BytePattern.Find(MemoryUtils.Read(this.dolphin, this.RAMBaseAddr, 0x1210000), "42480000000000??000000??3E4CCCCD");
-            if (result == -2)
-                throw new FormatException("Hex string must be of length of power 2");
-            if(result == -1)
-                throw new Exception("Couldn't find pattern");
-            return result;
+            if (!IsPlayerIngame)
+                return -1;
+            long GC_CInventory = MemoryUtils.ReadUInt32BE(this.dolphin, this.RAMBaseAddr + OFF_CINVENTORY);
+            if (GC_CInventory < GCBaseRamAddr)
+                return -1;
+            return GC_CInventory - GCBaseRamAddr;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (this.Exiting)
-                return;
             try
             {
                 if (!Game_Code.StartsWith("GM8"))
-				{
-                    new Thread(() => MessageBox.Show("Either Dolphin or the game is not running!\r\nExiting...")).Start();
-                    this.Close();
-					this.Exiting = true;
                     return;
-				}
-                if (Game_Status != 1)
+                if (!IsPlayerIngame)
                     return;
                 if (WasInSaveStation != IsInSaveStationRoom && IsInSaveStationRoom)
                     Health = MaxHealth;
@@ -754,6 +899,7 @@ namespace MPRandoAssist
                 if (!this.Exiting)
                 {
                     new Thread(() => MessageBox.Show("Either Dolphin or the game is not running!\r\nExiting...")).Start();
+                    this.timer1.Stop();
                     this.Close();
 					this.Exiting = true;
                 }

@@ -75,18 +75,6 @@ namespace MPRandoAssist
         internal const long OFF_PHAZONSUIT_OBTAINED = 0xD7; // 0xDF0CA7
         internal const long OFF_ENERGYTANKS_OBTAINED = 0xDF; // 0xDF0CAF
         internal const long OFF_WAVEBUSTER_OBTAINED = 0xFF; // 0xDF0CCF
-        internal const long OFF_ARTIFACT_OF_TRUTH_OBTAINED = 0x107;
-        internal const long OFF_ARTIFACT_OF_STRENGTH_OBTAINED = 0x10F;
-        internal const long OFF_ARTIFACT_OF_ELDER_OBTAINED = 0x117;
-        internal const long OFF_ARTIFACT_OF_WILD_OBTAINED = 0x11F;
-        internal const long OFF_ARTIFACT_OF_LIFEGIVER_OBTAINED = 0x127;
-        internal const long OFF_ARTIFACT_OF_WARRIOR_OBTAINED = 0x12F;
-        internal const long OFF_ARTIFACT_OF_CHOZO_OBTAINED = 0x137;
-        internal const long OFF_ARTIFACT_OF_NATURE_OBTAINED = 0x13F;
-        internal const long OFF_ARTIFACT_OF_SUN_OBTAINED = 0x147;
-        internal const long OFF_ARTIFACT_OF_WORLD_OBTAINED = 0x14F;
-        internal const long OFF_ARTIFACT_OF_SPIRIT_OBTAINED = 0x157;
-        internal const long OFF_ARTIFACT_OF_NEWBORN_OBTAINED = 0x15F;
         #endregion
 
         #region C Imports
@@ -521,41 +509,6 @@ namespace MPRandoAssist
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_WAVEBUSTER_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
-
-        internal bool Artifacts(int index)
-        {
-            if (index < 0)
-                throw new Exception("Index can't be negative");
-            switch(index)
-            {
-                case 0:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_TRUTH_OBTAINED) > 0;
-                case 1:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_STRENGTH_OBTAINED) > 0;
-                case 2:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_ELDER_OBTAINED) > 0;
-                case 3:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_WILD_OBTAINED) > 0;
-                case 4:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_LIFEGIVER_OBTAINED) > 0;
-                case 5:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_WARRIOR_OBTAINED) > 0;
-                case 6:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_CHOZO_OBTAINED) > 0;
-                case 7:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_NATURE_OBTAINED) > 0;
-                case 8:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_SUN_OBTAINED) > 0;
-                case 9:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_WORLD_OBTAINED) > 0;
-                case 10:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_SPIRIT_OBTAINED) > 0;
-                case 11:
-                    return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + this.InventoryOffset + OFF_ARTIFACT_OF_NEWBORN_OBTAINED) > 0;
-                default:
-                    throw new Exception("There are no artifacts past the 12th artifact");
-            }
-        }
         #endregion
 
         public Form1()
@@ -745,10 +698,6 @@ namespace MPRandoAssist
                 this.label23.Text = "Ice Spreader : " + (HaveIceSpreader ? OBTAINED : UNOBTAINED);
                 this.label24.Text = "Flamethrower : " + (HaveFlamethrower ? OBTAINED : UNOBTAINED);
                 this.label25.Text = "Space Boots : " + (HaveSpaceBoots ? OBTAINED : UNOBTAINED);
-                for(int i =0;i<12;i++)
-                {
-                    this.groupBox3.Controls["lblArtifact_"+(i+1)].Text = this.groupBox3.Controls["lblArtifact_" + (i + 1)].Text.Split(':')[0] + ": " + (Artifacts(i) ? OBTAINED : UNOBTAINED);
-                }
             } catch
             {
                 if (!this.Exiting)
@@ -819,7 +768,6 @@ namespace MPRandoAssist
                 this.ForeColor = Color.Gray;
                 this.groupBox1.ForeColor = Color.Gray;
                 this.groupBox2.ForeColor = Color.Gray;
-                this.groupBox3.ForeColor = Color.Gray;
                 this.comboBox1.BackColor = Color.Black;
                 this.comboBox1.ForeColor = Color.Gray;
                 this.comboBox2.BackColor = Color.Black;
@@ -834,7 +782,6 @@ namespace MPRandoAssist
                 this.ForeColor = Color.Black;
                 this.groupBox1.ForeColor = Color.Black;
                 this.groupBox2.ForeColor = Color.Black;
-                this.groupBox3.ForeColor = Color.Black;
                 this.comboBox1.BackColor = Color.LightGoldenrodYellow;
                 this.comboBox1.ForeColor = Color.Black;
                 this.comboBox2.BackColor = Color.LightGoldenrodYellow;

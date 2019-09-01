@@ -62,25 +62,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.lblArtifact_2 = new System.Windows.Forms.Label();
-            this.lblArtifact_1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.lblArtifact_11 = new System.Windows.Forms.Label();
-            this.lblArtifact_12 = new System.Windows.Forms.Label();
-            this.lblArtifact_3 = new System.Windows.Forms.Label();
-            this.lblArtifact_10 = new System.Windows.Forms.Label();
-            this.lblArtifact_7 = new System.Windows.Forms.Label();
-            this.lblArtifact_6 = new System.Windows.Forms.Label();
-            this.lblArtifact_4 = new System.Windows.Forms.Label();
-            this.lblArtifact_9 = new System.Windows.Forms.Label();
-            this.lblArtifact_8 = new System.Windows.Forms.Label();
-            this.lblArtifact_5 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,7 +105,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(394, 347);
+            this.groupBox2.Size = new System.Drawing.Size(394, 356);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Character Status";
@@ -129,9 +115,9 @@
             this.label25.AutoSize = true;
             this.label25.Location = new System.Drawing.Point(7, 315);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(193, 20);
+            this.label25.Size = new System.Drawing.Size(147, 20);
             this.label25.TabIndex = 22;
-            this.label25.Text = "Space Jump Boots : ???";
+            this.label25.Text = "Space Boots : ???";
             // 
             // label24
             // 
@@ -199,7 +185,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(7, 130);
+            this.label17.Location = new System.Drawing.Point(7, 131);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(129, 20);
             this.label17.TabIndex = 14;
@@ -208,7 +194,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(7, 104);
+            this.label16.Location = new System.Drawing.Point(7, 105);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(133, 20);
             this.label16.TabIndex = 13;
@@ -235,7 +221,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(233, 104);
+            this.label13.Location = new System.Drawing.Point(233, 105);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(142, 20);
             this.label13.TabIndex = 10;
@@ -244,7 +230,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(233, 130);
+            this.label12.Location = new System.Drawing.Point(233, 131);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(122, 20);
             this.label12.TabIndex = 9;
@@ -427,7 +413,6 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.groupBox3, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
@@ -435,55 +420,12 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(402, 653);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(402, 522);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.lblArtifact_5);
-            this.groupBox3.Controls.Add(this.lblArtifact_8);
-            this.groupBox3.Controls.Add(this.lblArtifact_9);
-            this.groupBox3.Controls.Add(this.lblArtifact_4);
-            this.groupBox3.Controls.Add(this.lblArtifact_6);
-            this.groupBox3.Controls.Add(this.lblArtifact_7);
-            this.groupBox3.Controls.Add(this.lblArtifact_10);
-            this.groupBox3.Controls.Add(this.lblArtifact_3);
-            this.groupBox3.Controls.Add(this.lblArtifact_12);
-            this.groupBox3.Controls.Add(this.lblArtifact_11);
-            this.groupBox3.Controls.Add(this.lblArtifact_2);
-            this.groupBox3.Controls.Add(this.lblArtifact_1);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(3, 517);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox3.Size = new System.Drawing.Size(394, 132);
-            this.groupBox3.TabIndex = 3;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Artifacts";
-            // 
-            // lblArtifact_2
-            // 
-            this.lblArtifact_2.AutoSize = true;
-            this.lblArtifact_2.Location = new System.Drawing.Point(117, 76);
-            this.lblArtifact_2.Name = "lblArtifact_2";
-            this.lblArtifact_2.Size = new System.Drawing.Size(114, 20);
-            this.lblArtifact_2.TabIndex = 2;
-            this.lblArtifact_2.Text = "Strength : ???";
-            // 
-            // lblArtifact_1
-            // 
-            this.lblArtifact_1.AutoSize = true;
-            this.lblArtifact_1.Location = new System.Drawing.Point(250, 24);
-            this.lblArtifact_1.Name = "lblArtifact_1";
-            this.lblArtifact_1.Size = new System.Drawing.Size(90, 20);
-            this.lblArtifact_1.TabIndex = 1;
-            this.lblArtifact_1.Text = "Truth : ???";
             // 
             // tableLayoutPanel2
             // 
@@ -516,110 +458,20 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // lblArtifact_11
-            // 
-            this.lblArtifact_11.AutoSize = true;
-            this.lblArtifact_11.Location = new System.Drawing.Point(117, 50);
-            this.lblArtifact_11.Name = "lblArtifact_11";
-            this.lblArtifact_11.Size = new System.Drawing.Size(90, 20);
-            this.lblArtifact_11.TabIndex = 3;
-            this.lblArtifact_11.Text = "Spirit : ???";
-            // 
-            // lblArtifact_12
-            // 
-            this.lblArtifact_12.AutoSize = true;
-            this.lblArtifact_12.Location = new System.Drawing.Point(117, 24);
-            this.lblArtifact_12.Name = "lblArtifact_12";
-            this.lblArtifact_12.Size = new System.Drawing.Size(117, 20);
-            this.lblArtifact_12.TabIndex = 4;
-            this.lblArtifact_12.Text = "Newborn : ???";
-            // 
-            // lblArtifact_3
-            // 
-            this.lblArtifact_3.AutoSize = true;
-            this.lblArtifact_3.Location = new System.Drawing.Point(7, 50);
-            this.lblArtifact_3.Name = "lblArtifact_3";
-            this.lblArtifact_3.Size = new System.Drawing.Size(90, 20);
-            this.lblArtifact_3.TabIndex = 5;
-            this.lblArtifact_3.Text = "Elder : ???";
-            // 
-            // lblArtifact_10
-            // 
-            this.lblArtifact_10.AutoSize = true;
-            this.lblArtifact_10.Location = new System.Drawing.Point(250, 102);
-            this.lblArtifact_10.Name = "lblArtifact_10";
-            this.lblArtifact_10.Size = new System.Drawing.Size(95, 20);
-            this.lblArtifact_10.TabIndex = 6;
-            this.lblArtifact_10.Text = "World : ???";
-            // 
-            // lblArtifact_7
-            // 
-            this.lblArtifact_7.AutoSize = true;
-            this.lblArtifact_7.Location = new System.Drawing.Point(7, 24);
-            this.lblArtifact_7.Name = "lblArtifact_7";
-            this.lblArtifact_7.Size = new System.Drawing.Size(99, 20);
-            this.lblArtifact_7.TabIndex = 7;
-            this.lblArtifact_7.Text = "Chozo : ???";
-            // 
-            // lblArtifact_6
-            // 
-            this.lblArtifact_6.AutoSize = true;
-            this.lblArtifact_6.Location = new System.Drawing.Point(250, 50);
-            this.lblArtifact_6.Name = "lblArtifact_6";
-            this.lblArtifact_6.Size = new System.Drawing.Size(107, 20);
-            this.lblArtifact_6.TabIndex = 8;
-            this.lblArtifact_6.Text = "Warrior : ???";
-            // 
-            // lblArtifact_4
-            // 
-            this.lblArtifact_4.AutoSize = true;
-            this.lblArtifact_4.Location = new System.Drawing.Point(250, 76);
-            this.lblArtifact_4.Name = "lblArtifact_4";
-            this.lblArtifact_4.Size = new System.Drawing.Size(84, 20);
-            this.lblArtifact_4.TabIndex = 9;
-            this.lblArtifact_4.Text = "Wild : ???";
-            // 
-            // lblArtifact_9
-            // 
-            this.lblArtifact_9.AutoSize = true;
-            this.lblArtifact_9.Location = new System.Drawing.Point(117, 102);
-            this.lblArtifact_9.Name = "lblArtifact_9";
-            this.lblArtifact_9.Size = new System.Drawing.Size(80, 20);
-            this.lblArtifact_9.TabIndex = 10;
-            this.lblArtifact_9.Text = "Sun : ???";
-            // 
-            // lblArtifact_8
-            // 
-            this.lblArtifact_8.AutoSize = true;
-            this.lblArtifact_8.Location = new System.Drawing.Point(7, 102);
-            this.lblArtifact_8.Name = "lblArtifact_8";
-            this.lblArtifact_8.Size = new System.Drawing.Size(101, 20);
-            this.lblArtifact_8.TabIndex = 11;
-            this.lblArtifact_8.Text = "Nature : ???";
-            // 
-            // lblArtifact_5
-            // 
-            this.lblArtifact_5.AutoSize = true;
-            this.lblArtifact_5.Location = new System.Drawing.Point(7, 76);
-            this.lblArtifact_5.Name = "lblArtifact_5";
-            this.lblArtifact_5.Size = new System.Drawing.Size(115, 20);
-            this.lblArtifact_5.TabIndex = 12;
-            this.lblArtifact_5.Text = "Lifegiver : ???";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGoldenrodYellow;
-            this.ClientSize = new System.Drawing.Size(402, 653);
+            this.ClientSize = new System.Drawing.Size(402, 522);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(420, 700);
-            this.MinimumSize = new System.Drawing.Size(420, 700);
+            this.MaximumSize = new System.Drawing.Size(420, 569);
+            this.MinimumSize = new System.Drawing.Size(420, 569);
             this.Name = "Form1";
             this.ShowIcon = false;
             this.Text = "Metroid Prime Rando Assist";
@@ -629,8 +481,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -672,19 +522,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label lblArtifact_2;
-        private System.Windows.Forms.Label lblArtifact_1;
-        private System.Windows.Forms.Label lblArtifact_5;
-        private System.Windows.Forms.Label lblArtifact_8;
-        private System.Windows.Forms.Label lblArtifact_9;
-        private System.Windows.Forms.Label lblArtifact_4;
-        private System.Windows.Forms.Label lblArtifact_6;
-        private System.Windows.Forms.Label lblArtifact_7;
-        private System.Windows.Forms.Label lblArtifact_10;
-        private System.Windows.Forms.Label lblArtifact_3;
-        private System.Windows.Forms.Label lblArtifact_12;
-        private System.Windows.Forms.Label lblArtifact_11;
     }
 }
 

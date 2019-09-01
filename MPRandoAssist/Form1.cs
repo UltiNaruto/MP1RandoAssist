@@ -1,8 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -20,6 +22,7 @@ namespace MPRandoAssist
         bool Is32BitProcess;
         bool Exiting = false;
         bool WasInSaveStation = false;
+        bool EditingInventory = false;
         #endregion
 
         #region Auto Refill Timestamps
@@ -49,7 +52,7 @@ namespace MPRandoAssist
         internal const long OFF_MORPHBALLBOMBS_COUNT = 0x457D1B;
         internal const long OFF_GAME_STATUS = 0x457F4D;
         internal const long OFF_HEALTH = 0x0C;
-        internal const long OFF_CRITICAL_HEALTH = OFF_HEALTH+4;
+        internal const long OFF_CRITICAL_HEALTH = OFF_HEALTH + 4;
         internal const long OFF_POWERBEAM_OBTAINED = 0x2F;
         internal const long OFF_ICEBEAM_OBTAINED = 0x37;
         internal const long OFF_WAVEBEAM_OBTAINED = 0x3F;
@@ -236,13 +239,15 @@ namespace MPRandoAssist
 
         internal ushort Health
         {
-            get {
+            get
+            {
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return 0;
                 return (ushort)MemoryUtils.ReadFloat32(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_HEALTH);
             }
-            set {
+            set
+            {
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
@@ -275,6 +280,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_ICEBEAM_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_ICEBEAM_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -293,6 +299,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_WAVEBEAM_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_WAVEBEAM_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -311,6 +318,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_PLASMABEAM_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_PLASMABEAM_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -365,6 +373,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_SCANVISOR_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_SCANVISOR_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -437,6 +446,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_FLAMETHROWER_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_FLAMETHROWER_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -455,6 +465,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_THERMALVISOR_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_THERMALVISOR_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -473,6 +484,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_CHARGEBEAM_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_CHARGEBEAM_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -491,6 +503,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_SUPERMISSILE_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_SUPERMISSILE_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -509,6 +522,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_GRAPPLEBEAM_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_GRAPPLEBEAM_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -527,6 +541,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_XRAYVISOR_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_XRAYVISOR_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -545,6 +560,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_ICESPREADER_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_ICESPREADER_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -563,22 +579,26 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_SPACEJUMPBOOTS_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_SPACEJUMPBOOTS_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 
         internal bool HaveMorphBall
         {
-            get {
+            get
+            {
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return false;
                 return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_MORPHBALL_OBTAINED) > 0;
             }
-            set {
+            set
+            {
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_MORPHBALL_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_MORPHBALL_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -597,6 +617,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_COMBATVISOR_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_COMBATVISOR_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -615,6 +636,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_BOOSTBALL_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_BOOSTBALL_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -633,6 +655,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_SPIDERBALL_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_SPIDERBALL_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -651,6 +674,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_POWERSUIT_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_POWERSUIT_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -669,6 +693,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_GRAVITYSUIT_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_GRAVITYSUIT_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -687,6 +712,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_VARIASUIT_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_VARIASUIT_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -705,6 +731,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_PHAZONSUIT_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_PHAZONSUIT_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -723,6 +750,7 @@ namespace MPRandoAssist
                 long PlayerState = GetPlayerStateOffset();
                 if (PlayerState == -1)
                     return;
+                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_WAVEBUSTER_OBTAINED - 4, (byte)(value ? 1 : 0));
                 MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_WAVEBUSTER_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
@@ -734,7 +762,7 @@ namespace MPRandoAssist
                 return false;
             if (index < 0)
                 throw new Exception("Index can't be negative");
-            switch(index)
+            switch (index)
             {
                 case 0:
                     return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + PlayerState + OFF_ARTIFACT_OF_TRUTH_OBTAINED) > 0;
@@ -766,6 +794,14 @@ namespace MPRandoAssist
         }
         #endregion
 
+        void SafeClose()
+        {
+            if (InvokeRequired)
+                Invoke(new Action(() => SafeClose()));
+            else
+                Close();
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -795,7 +831,7 @@ namespace MPRandoAssist
         {
             using (var file = new StreamWriter(File.OpenWrite("MPRandoAssist.ini")))
             {
-                file.WriteLine("DarkMode="+(this.checkBox1.Checked?"ON":"OFF"));
+                file.WriteLine("DarkMode=" + (this.checkBox1.Checked ? "ON" : "OFF"));
             }
         }
 
@@ -820,10 +856,10 @@ namespace MPRandoAssist
             do
             {
                 MEMORY_BASIC_INFORMATION m;
-                if(VirtualQueryEx(this.dolphin.Handle, (IntPtr)address, out m, (uint)Marshal.SizeOf(typeof(MEMORY_BASIC_INFORMATION)))==0)
+                if (VirtualQueryEx(this.dolphin.Handle, (IntPtr)address, out m, (uint)Marshal.SizeOf(typeof(MEMORY_BASIC_INFORMATION))) == 0)
                     break;
                 String game_code = Encoding.ASCII.GetString(MemoryUtils.Read(this.dolphin, this.Is32BitProcess ? m.AllocationBase.ToInt32() : m.AllocationBase.ToInt64(), 8)).Trim('\0');
-                bool game_code_check = ((game_code.Length - 6)*(game_code.Length-3)) <= 0;
+                bool game_code_check = ((game_code.Length - 6) * (game_code.Length - 3)) <= 0;
                 for (int i = 0; i < game_code.Length; i++) if (!IsValidChar(game_code[i])) game_code_check = false;
                 if (m.Type == TypeEnum.MEM_MAPPED && m.AllocationProtect == AllocationProtectEnum.PAGE_READWRITE && m.State != StateEnum.MEM_FREE && m.RegionSize.ToInt64() > 0x20000 && game_code_check)
                 {
@@ -848,7 +884,7 @@ namespace MPRandoAssist
                 if (dolphin == null)
                 {
                     MessageBox.Show("Dolphin is not running!\r\nExiting...");
-                    this.Close();
+                    SafeClose();
                     return;
                 }
                 this.Is32BitProcess = this.dolphin.MainModule.BaseAddress.ToInt64() < UInt32.MaxValue;
@@ -856,13 +892,13 @@ namespace MPRandoAssist
                 if (this.RAMBaseAddr == 0)
                 {
                     MessageBox.Show("Metroid Prime is not running!\r\nExiting...");
-                    this.Close();
+                    SafeClose();
                     return;
                 }
                 if (!Game_Code.StartsWith("GM8"))
                 {
                     MessageBox.Show("Metroid Prime is not running!\r\nExiting...");
-                    this.Close();
+                    SafeClose();
                     return;
                 }
                 this.comboBox1.SelectedIndex = 0;
@@ -871,8 +907,85 @@ namespace MPRandoAssist
                 this.comboBox2.Update();
                 this.comboBox3.SelectedIndex = 0;
                 this.comboBox3.Update();
-                this.timer1.Enabled = true;
-            } catch(Exception ex)
+                GCSettings.LatencyMode = GCLatencyMode.LowLatency;
+                var Worker = new BackgroundWorker();
+                Worker.DoWork += (s, ev) =>
+                {
+                    while (!this.Exiting)
+                    {
+                        try
+                        {
+                            if (!Game_Code.StartsWith("GM8"))
+                            {
+                                new Thread(() => MessageBox.Show("Either Dolphin or the game is not running!\r\nExiting...")).Start();
+                                SafeClose();
+                                this.Exiting = true;
+                                break;
+                            }
+                            if (Game_Status != 1)
+                                continue;
+                            this.label26.SetTextSafely(GetIGTAsString());
+                            if (WasInSaveStation != IsInSaveStationRoom && IsInSaveStationRoom)
+                                Health = MaxHealth;
+                            WasInSaveStation = IsInSaveStationRoom;
+                            this.label1.SetTextSafely("Missiles : " + Missiles + " / " + MaxMissiles);
+                            if (comboBox1.GetSelectedIndex() == 1)
+                                AutoRefillMissiles();
+                            else if (comboBox1.GetSelectedIndex() == 2)
+                                Missiles = MaxMissiles;
+                            this.label2.SetTextSafely("Morph Ball Bombs : " + MorphBallBombs + " / " + MaxMorphBallBombs);
+                            if (comboBox2.GetSelectedIndex() == 1)
+                                MorphBallBombs = MaxMorphBallBombs;
+                            this.label3.SetTextSafely("Power Bombs : " + PowerBombs + " / " + MaxPowerBombs);
+                            if (comboBox3.GetSelectedIndex() == 1)
+                                AutoRefillPowerBombs();
+                            else if (comboBox3.GetSelectedIndex() == 2)
+                                PowerBombs = MaxPowerBombs;
+                            this.label4.SetTextSafely("HP : " + Health + " / " + MaxHealth+(Health < 30 ? " /!\\" : ""));
+                            if (!EditingInventory)
+                            {
+                                this.morphBallChkBox.SetChecked(HaveMorphBall);
+                                this.thermalVisorChkBox.SetChecked(HaveThermalVisor);
+                                this.xrayVisorChkBox.SetChecked(HaveXRayVisor);
+                                this.morphBallBombsChkBox.SetChecked(HaveMorphBallBombs);
+                                this.missileLauncherChkBox.SetChecked(MaxMissiles > 0);
+                                this.superMissileChkBox.SetChecked(HaveSuperMissile);
+                                this.plasmaBeamChkBox.SetChecked(HavePlasmaBeam);
+                                this.iceBeamChkBox.SetChecked(HaveIceBeam);
+                                this.waveBeamChkBox.SetChecked(HaveWaveBeam);
+                                this.chargeBeamChkBox.SetChecked(HaveChargeBeam);
+                                this.grappleBeamChkBox.SetChecked(HaveGrappleBeam);
+                                this.spiderBallChkBox.SetChecked(HaveSpiderBall);
+                                this.boostBallChkBox.SetChecked(HaveBoostBall);
+                                this.powerBombsChkBox.SetChecked(MaxPowerBombs > 0);
+                                this.variaSuitChkBox.SetChecked(HaveVariaSuit);
+                                this.gravitySuitChkBox.SetChecked(HaveGravitySuit);
+                                this.phazonSuitChkBox.SetChecked(HavePhazonSuit);
+                                this.wavebusterChkBox.SetChecked(HaveWavebuster);
+                                this.iceSpreaderChkBox.SetChecked(HaveIceSpreader);
+                                this.flamethrowerChkBox.SetChecked(HaveFlamethrower);
+                                this.spaceJumpBootsChkBox.SetChecked(HaveSpaceJumpBoots);
+                            }
+                            for (int i = 0; i < 12; i++)
+                            {
+                                ((Label)this.groupBox3.Controls["lblArtifact_" + (i + 1)]).SetTextSafely(this.groupBox3.Controls["lblArtifact_" + (i + 1)].Text.Split(':')[0] + ": " + (Artifacts(i) ? OBTAINED : UNOBTAINED));
+                            }
+                        }
+                        catch
+                        {
+                            if (!this.Exiting)
+                            {
+                                new Thread(() => MessageBox.Show("Either Dolphin or the game is not running!\r\nExiting...")).Start();
+                                SafeClose();
+                                this.Exiting = true;
+                            }
+                        }
+                        Thread.Sleep(100);
+                    }
+                };
+                Worker.RunWorkerAsync();
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 this.Close();
@@ -918,73 +1031,7 @@ namespace MPRandoAssist
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (this.Exiting)
-                return;
-            try
-            {
-                if (!Game_Code.StartsWith("GM8"))
-				{
-                    new Thread(() => MessageBox.Show("Either Dolphin or the game is not running!\r\nExiting...")).Start();
-                    this.Close();
-					this.Exiting = true;
-                    return;
-				}
-                if (Game_Status != 1)
-                    return;
-                this.label26.Text = GetIGTAsString();
-                if (WasInSaveStation != IsInSaveStationRoom && IsInSaveStationRoom)
-                    Health = MaxHealth;
-                WasInSaveStation = IsInSaveStationRoom;
-                this.label1.Text = "Missiles : " + Missiles + " / " + MaxMissiles;
-                if (comboBox1.SelectedIndex == 1)
-                    AutoRefillMissiles();
-                else if (comboBox1.SelectedIndex == 2)
-                    Missiles = MaxMissiles;
-                this.label2.Text = "Morph Ball Bombs : " + MorphBallBombs + " / " + MaxMorphBallBombs;
-                if (comboBox2.SelectedIndex == 1)
-                    MorphBallBombs = MaxMorphBallBombs;
-                this.label3.Text = "Power Bombs : " + PowerBombs + " / " + MaxPowerBombs;
-                if (comboBox3.SelectedIndex == 1)
-                    AutoRefillPowerBombs();
-                else if (comboBox3.SelectedIndex == 2)
-                    PowerBombs = MaxPowerBombs;
-                this.label4.Text = "HP : " + Health + " / " + MaxHealth;
-                if (Health < 30)
-                    this.label4.Text += " /!\\";
-                this.label5.Text = "Morph Ball : " + (HaveMorphBall ? OBTAINED : UNOBTAINED);
-                this.label6.Text = "Thermal Visor : " + (HaveThermalVisor ? OBTAINED : UNOBTAINED);
-                this.label7.Text = "XRay Visor : " + (HaveXRayVisor ? OBTAINED : UNOBTAINED);
-                this.label8.Text = "Morph Ball Bombs : " + (HaveMorphBallBombs ? OBTAINED : UNOBTAINED);
-                this.label9.Text = "Missile Launcher : " + (MaxMissiles > 0 ? OBTAINED : UNOBTAINED);
-                this.label10.Text = "Super Missile : " + (HaveSuperMissile ? OBTAINED : UNOBTAINED);
-                this.label11.Text = "Plasma Beam : " + (HavePlasmaBeam ? OBTAINED : UNOBTAINED);
-                this.label12.Text = "Ice Beam : " + (HaveIceBeam ? OBTAINED : UNOBTAINED);
-                this.label13.Text = "Wave Beam : " + (HaveWaveBeam ? OBTAINED : UNOBTAINED);
-                this.label14.Text = "Charge Beam : " + (HaveChargeBeam ? OBTAINED : UNOBTAINED);
-                this.label15.Text = "Grapple Beam : " + (HaveGrappleBeam ? OBTAINED : UNOBTAINED);
-                this.label16.Text = "Spider Ball : " + (HaveSpiderBall ? OBTAINED : UNOBTAINED);
-                this.label17.Text = "Boost Ball : " + (HaveBoostBall ? OBTAINED : UNOBTAINED);
-                this.label18.Text = "Power Bombs : " + (MaxPowerBombs > 0 ? OBTAINED : UNOBTAINED);
-                this.label19.Text = "Varia Suit : " + (HaveVariaSuit ? OBTAINED : UNOBTAINED);
-                this.label20.Text = "Gravity Suit : " + (HaveGravitySuit ? OBTAINED : UNOBTAINED);
-                this.label21.Text = "Phazon Suit : " + (HavePhazonSuit ? OBTAINED : UNOBTAINED);
-                this.label22.Text = "Wavebuster : " + (HaveWavebuster ? OBTAINED : UNOBTAINED);
-                this.label23.Text = "Ice Spreader : " + (HaveIceSpreader ? OBTAINED : UNOBTAINED);
-                this.label24.Text = "Flamethrower : " + (HaveFlamethrower ? OBTAINED : UNOBTAINED);
-                this.label25.Text = "Space Jump Boots : " + (HaveSpaceJumpBoots ? OBTAINED : UNOBTAINED);
-                for(int i =0;i<12;i++)
-                {
-                    this.groupBox3.Controls["lblArtifact_"+(i+1)].Text = this.groupBox3.Controls["lblArtifact_" + (i + 1)].Text.Split(':')[0] + ": " + (Artifacts(i) ? OBTAINED : UNOBTAINED);
-                }
-            } catch
-            {
-                if (!this.Exiting)
-                {
-                    new Thread(() => MessageBox.Show("Either Dolphin or the game is not running!\r\nExiting...")).Start();
-                    this.Close();
-					this.Exiting = true;
-                }
-            }
+            
         }
 
         private void AutoRefillMissiles()
@@ -1030,8 +1077,8 @@ namespace MPRandoAssist
                 return;
             if (curTime - Regenerate_Health_LastTime <= REGEN_HEALTH_COOLDOWN)
             {
-                DateTime remainingTime = new DateTime((REGEN_HEALTH_COOLDOWN - (curTime - Regenerate_Health_LastTime))*TimeSpan.TicksPerMillisecond);
-                MessageBox.Show("You can regenerate in "+(remainingTime.Minute == 0 ? "" : remainingTime.Minute+" minute"+(remainingTime.Minute > 1 ? "s ":" "))+ (remainingTime.Second == 0 ? "" : remainingTime.Second + " second" + (remainingTime.Second > 1 ? "s" : "")));
+                DateTime remainingTime = new DateTime((REGEN_HEALTH_COOLDOWN - (curTime - Regenerate_Health_LastTime)) * TimeSpan.TicksPerMillisecond);
+                MessageBox.Show("You can regenerate in " + (remainingTime.Minute == 0 ? "" : remainingTime.Minute + " minute" + (remainingTime.Minute > 1 ? "s " : " ")) + (remainingTime.Second == 0 ? "" : remainingTime.Second + " second" + (remainingTime.Second > 1 ? "s" : "")));
                 return;
             }
             Health = MaxHealth;
@@ -1040,7 +1087,7 @@ namespace MPRandoAssist
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBox1.Checked)
+            if (checkBox1.Checked)
             {
                 this.BackColor = Color.Black;
                 this.ForeColor = Color.Gray;
@@ -1070,8 +1117,175 @@ namespace MPRandoAssist
                 this.comboBox3.ForeColor = Color.Black;
                 this.button1.BackColor = Color.LightGoldenrodYellow;
             }
-            if(!IsLoadingSettings)
+            if (!IsLoadingSettings)
                 SaveSettings();
+        }
+
+        private void morphBallChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HaveMorphBall = morphBallChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void morphBallBombsChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HaveMorphBallBombs = morphBallBombsChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void spiderBallChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HaveSpiderBall = spiderBallChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void boostBallChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HaveBoostBall = boostBallChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void powerBombsChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            if (missileLauncherChkBox.Checked)
+            {
+                using (var dialog = new PowerBombsCountDialog(this.checkBox1.Checked))
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                        MaxPowerBombs = PowerBombs = dialog.PowerBombsCount;
+            }
+            else
+            {
+                MaxPowerBombs = 0;
+                PowerBombs = MaxPowerBombs;
+            }
+            EditingInventory = false;
+        }
+
+        private void missileLauncherChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            if (missileLauncherChkBox.Checked)
+            {
+                using (var dialog = new MissileCountDialog(this.checkBox1.Checked))
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                        MaxMissiles = Missiles = dialog.MissileCount;
+            }
+            else
+            {
+                MaxMissiles = 0;
+                Missiles = MaxMissiles;
+            }
+            EditingInventory = false;
+        }
+
+        private void superMissileChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HaveSuperMissile = superMissileChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void variaSuitChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HaveVariaSuit = variaSuitChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void gravitySuitChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HaveGravitySuit = gravitySuitChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void phazonSuitChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HavePhazonSuit = phazonSuitChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void spaceJumpBootsChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HaveSpaceJumpBoots = spaceJumpBootsChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void thermalVisorChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HaveThermalVisor = thermalVisorChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void xrayVisorChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HaveXRayVisor = xrayVisorChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void waveBeamChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HaveWaveBeam = waveBeamChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void iceBeamChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HaveIceBeam = iceBeamChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void plasmaBeamChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HavePlasmaBeam = plasmaBeamChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void chargeBeamChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HaveChargeBeam = chargeBeamChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void grappleBeamChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HaveGrappleBeam = grappleBeamChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void wavebusterChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HaveWavebuster = wavebusterChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void iceSpreaderChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HaveIceSpreader = iceSpreaderChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void flamethrowerChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            HaveFlamethrower = flamethrowerChkBox.Checked;
+            EditingInventory = false;
         }
     }
 }

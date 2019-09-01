@@ -28,30 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.spaceJumpBootsChkBox = new System.Windows.Forms.CheckBox();
+            this.xrayVisorChkBox = new System.Windows.Forms.CheckBox();
+            this.thermalVisorChkBox = new System.Windows.Forms.CheckBox();
+            this.morphBallChkBox = new System.Windows.Forms.CheckBox();
+            this.morphBallBombsChkBox = new System.Windows.Forms.CheckBox();
+            this.waveBeamChkBox = new System.Windows.Forms.CheckBox();
+            this.spiderBallChkBox = new System.Windows.Forms.CheckBox();
+            this.iceBeamChkBox = new System.Windows.Forms.CheckBox();
+            this.boostBallChkBox = new System.Windows.Forms.CheckBox();
+            this.plasmaBeamChkBox = new System.Windows.Forms.CheckBox();
+            this.powerBombsChkBox = new System.Windows.Forms.CheckBox();
+            this.missileLauncherChkBox = new System.Windows.Forms.CheckBox();
+            this.chargeBeamChkBox = new System.Windows.Forms.CheckBox();
+            this.superMissileChkBox = new System.Windows.Forms.CheckBox();
+            this.grappleBeamChkBox = new System.Windows.Forms.CheckBox();
+            this.variaSuitChkBox = new System.Windows.Forms.CheckBox();
+            this.wavebusterChkBox = new System.Windows.Forms.CheckBox();
+            this.gravitySuitChkBox = new System.Windows.Forms.CheckBox();
+            this.iceSpreaderChkBox = new System.Windows.Forms.CheckBox();
+            this.phazonSuitChkBox = new System.Windows.Forms.CheckBox();
+            this.flamethrowerChkBox = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -79,40 +78,16 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label26 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // timer1
-            // 
-            this.timer1.Interval = 1;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label25);
-            this.groupBox2.Controls.Add(this.label24);
-            this.groupBox2.Controls.Add(this.label23);
-            this.groupBox2.Controls.Add(this.label22);
-            this.groupBox2.Controls.Add(this.label21);
-            this.groupBox2.Controls.Add(this.label20);
-            this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.label18);
-            this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Controls.Add(this.label16);
-            this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.tableLayoutPanel3);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -125,194 +100,342 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Character Status";
             // 
-            // label25
+            // tableLayoutPanel3
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(7, 315);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(193, 20);
-            this.label25.TabIndex = 22;
-            this.label25.Text = "Space Jump Boots : ???";
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.spaceJumpBootsChkBox, 0, 10);
+            this.tableLayoutPanel3.Controls.Add(this.xrayVisorChkBox, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.thermalVisorChkBox, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.morphBallChkBox, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.morphBallBombsChkBox, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.waveBeamChkBox, 1, 2);
+            this.tableLayoutPanel3.Controls.Add(this.spiderBallChkBox, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.iceBeamChkBox, 1, 3);
+            this.tableLayoutPanel3.Controls.Add(this.boostBallChkBox, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.plasmaBeamChkBox, 1, 4);
+            this.tableLayoutPanel3.Controls.Add(this.powerBombsChkBox, 0, 4);
+            this.tableLayoutPanel3.Controls.Add(this.missileLauncherChkBox, 0, 5);
+            this.tableLayoutPanel3.Controls.Add(this.chargeBeamChkBox, 1, 5);
+            this.tableLayoutPanel3.Controls.Add(this.superMissileChkBox, 0, 6);
+            this.tableLayoutPanel3.Controls.Add(this.grappleBeamChkBox, 1, 6);
+            this.tableLayoutPanel3.Controls.Add(this.variaSuitChkBox, 0, 7);
+            this.tableLayoutPanel3.Controls.Add(this.wavebusterChkBox, 1, 7);
+            this.tableLayoutPanel3.Controls.Add(this.gravitySuitChkBox, 0, 8);
+            this.tableLayoutPanel3.Controls.Add(this.iceSpreaderChkBox, 1, 8);
+            this.tableLayoutPanel3.Controls.Add(this.phazonSuitChkBox, 0, 9);
+            this.tableLayoutPanel3.Controls.Add(this.flamethrowerChkBox, 1, 9);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(11, 55);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 11;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(374, 286);
+            this.tableLayoutPanel3.TabIndex = 23;
             // 
-            // label24
+            // spaceJumpBootsChkBox
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(233, 289);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(153, 20);
-            this.label24.TabIndex = 21;
-            this.label24.Text = "Flamethrower : ???";
+            this.spaceJumpBootsChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.spaceJumpBootsChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.spaceJumpBootsChkBox.Location = new System.Drawing.Point(3, 263);
+            this.spaceJumpBootsChkBox.Name = "spaceJumpBootsChkBox";
+            this.spaceJumpBootsChkBox.Size = new System.Drawing.Size(181, 20);
+            this.spaceJumpBootsChkBox.TabIndex = 23;
+            this.spaceJumpBootsChkBox.Text = "Space Jump Boots";
+            this.spaceJumpBootsChkBox.UseVisualStyleBackColor = true;
+            this.spaceJumpBootsChkBox.CheckedChanged += new System.EventHandler(this.spaceJumpBootsChkBox_CheckedChanged);
             // 
-            // label23
+            // xrayVisorChkBox
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(233, 262);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(146, 20);
-            this.label23.TabIndex = 20;
-            this.label23.Text = "Ice Spreader : ???";
+            this.xrayVisorChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.xrayVisorChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.xrayVisorChkBox.Location = new System.Drawing.Point(190, 29);
+            this.xrayVisorChkBox.Name = "xrayVisorChkBox";
+            this.xrayVisorChkBox.Size = new System.Drawing.Size(181, 20);
+            this.xrayVisorChkBox.TabIndex = 6;
+            this.xrayVisorChkBox.Text = "XRay Visor";
+            this.xrayVisorChkBox.UseVisualStyleBackColor = true;
+            this.xrayVisorChkBox.CheckedChanged += new System.EventHandler(this.xrayVisorChkBox_CheckedChanged);
             // 
-            // label22
+            // thermalVisorChkBox
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(233, 236);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(140, 20);
-            this.label22.TabIndex = 19;
-            this.label22.Text = "Wavebuster : ???";
+            this.thermalVisorChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.thermalVisorChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.thermalVisorChkBox.Location = new System.Drawing.Point(190, 3);
+            this.thermalVisorChkBox.Name = "thermalVisorChkBox";
+            this.thermalVisorChkBox.Size = new System.Drawing.Size(181, 20);
+            this.thermalVisorChkBox.TabIndex = 5;
+            this.thermalVisorChkBox.Text = "Thermal Visor";
+            this.thermalVisorChkBox.UseVisualStyleBackColor = true;
+            this.thermalVisorChkBox.CheckedChanged += new System.EventHandler(this.thermalVisorChkBox_CheckedChanged);
             // 
-            // label21
+            // morphBallChkBox
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(7, 289);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(141, 20);
-            this.label21.TabIndex = 18;
-            this.label21.Text = "Phazon Suit : ???";
+            this.morphBallChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.morphBallChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.morphBallChkBox.Location = new System.Drawing.Point(3, 3);
+            this.morphBallChkBox.Name = "morphBallChkBox";
+            this.morphBallChkBox.Size = new System.Drawing.Size(181, 20);
+            this.morphBallChkBox.TabIndex = 3;
+            this.morphBallChkBox.Text = "Morph Ball";
+            this.morphBallChkBox.UseVisualStyleBackColor = true;
+            this.morphBallChkBox.CheckStateChanged += new System.EventHandler(this.morphBallChkBox_CheckedChanged);
             // 
-            // label20
+            // morphBallBombsChkBox
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(7, 262);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(138, 20);
-            this.label20.TabIndex = 17;
-            this.label20.Text = "Gravity Suit : ???";
+            this.morphBallBombsChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.morphBallBombsChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.morphBallBombsChkBox.Location = new System.Drawing.Point(3, 29);
+            this.morphBallBombsChkBox.Name = "morphBallBombsChkBox";
+            this.morphBallBombsChkBox.Size = new System.Drawing.Size(181, 20);
+            this.morphBallBombsChkBox.TabIndex = 4;
+            this.morphBallBombsChkBox.Text = "Morph Ball Bombs";
+            this.morphBallBombsChkBox.UseVisualStyleBackColor = true;
+            this.morphBallBombsChkBox.CheckedChanged += new System.EventHandler(this.morphBallBombsChkBox_CheckedChanged);
             // 
-            // label19
+            // waveBeamChkBox
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(7, 236);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(124, 20);
-            this.label19.TabIndex = 16;
-            this.label19.Text = "Varia Suit : ???";
+            this.waveBeamChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.waveBeamChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.waveBeamChkBox.Location = new System.Drawing.Point(190, 55);
+            this.waveBeamChkBox.Name = "waveBeamChkBox";
+            this.waveBeamChkBox.Size = new System.Drawing.Size(181, 20);
+            this.waveBeamChkBox.TabIndex = 8;
+            this.waveBeamChkBox.Text = "Wave Beam";
+            this.waveBeamChkBox.UseVisualStyleBackColor = true;
+            this.waveBeamChkBox.CheckedChanged += new System.EventHandler(this.waveBeamChkBox_CheckedChanged);
             // 
-            // label18
+            // spiderBallChkBox
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(7, 158);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(156, 20);
-            this.label18.TabIndex = 15;
-            this.label18.Text = "Power Bombs : ???";
+            this.spiderBallChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.spiderBallChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.spiderBallChkBox.Location = new System.Drawing.Point(3, 55);
+            this.spiderBallChkBox.Name = "spiderBallChkBox";
+            this.spiderBallChkBox.Size = new System.Drawing.Size(181, 20);
+            this.spiderBallChkBox.TabIndex = 7;
+            this.spiderBallChkBox.Text = "Spider Ball";
+            this.spiderBallChkBox.UseVisualStyleBackColor = true;
+            this.spiderBallChkBox.CheckedChanged += new System.EventHandler(this.spiderBallChkBox_CheckedChanged);
             // 
-            // label17
+            // iceBeamChkBox
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(7, 130);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(129, 20);
-            this.label17.TabIndex = 14;
-            this.label17.Text = "Boost Ball : ???";
+            this.iceBeamChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.iceBeamChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iceBeamChkBox.Location = new System.Drawing.Point(190, 81);
+            this.iceBeamChkBox.Name = "iceBeamChkBox";
+            this.iceBeamChkBox.Size = new System.Drawing.Size(181, 20);
+            this.iceBeamChkBox.TabIndex = 10;
+            this.iceBeamChkBox.Text = "Ice Beam";
+            this.iceBeamChkBox.UseVisualStyleBackColor = true;
+            this.iceBeamChkBox.CheckedChanged += new System.EventHandler(this.iceBeamChkBox_CheckedChanged);
             // 
-            // label16
+            // boostBallChkBox
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(7, 104);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(133, 20);
-            this.label16.TabIndex = 13;
-            this.label16.Text = "Spider Ball : ???";
+            this.boostBallChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.boostBallChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.boostBallChkBox.Location = new System.Drawing.Point(3, 81);
+            this.boostBallChkBox.Name = "boostBallChkBox";
+            this.boostBallChkBox.Size = new System.Drawing.Size(181, 20);
+            this.boostBallChkBox.TabIndex = 9;
+            this.boostBallChkBox.Text = "Boost Ball";
+            this.boostBallChkBox.UseVisualStyleBackColor = true;
+            this.boostBallChkBox.CheckedChanged += new System.EventHandler(this.boostBallChkBox_CheckedChanged);
             // 
-            // label15
+            // plasmaBeamChkBox
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(233, 210);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(159, 20);
-            this.label15.TabIndex = 12;
-            this.label15.Text = "Grapple Beam : ???";
+            this.plasmaBeamChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.plasmaBeamChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.plasmaBeamChkBox.Location = new System.Drawing.Point(190, 107);
+            this.plasmaBeamChkBox.Name = "plasmaBeamChkBox";
+            this.plasmaBeamChkBox.Size = new System.Drawing.Size(181, 20);
+            this.plasmaBeamChkBox.TabIndex = 12;
+            this.plasmaBeamChkBox.Text = "Plasma Beam";
+            this.plasmaBeamChkBox.UseVisualStyleBackColor = true;
+            this.plasmaBeamChkBox.CheckedChanged += new System.EventHandler(this.plasmaBeamChkBox_CheckedChanged);
             // 
-            // label14
+            // powerBombsChkBox
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(233, 184);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(154, 20);
-            this.label14.TabIndex = 11;
-            this.label14.Text = "Charge Beam : ???";
+            this.powerBombsChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.powerBombsChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.powerBombsChkBox.Location = new System.Drawing.Point(3, 107);
+            this.powerBombsChkBox.Name = "powerBombsChkBox";
+            this.powerBombsChkBox.Size = new System.Drawing.Size(181, 20);
+            this.powerBombsChkBox.TabIndex = 11;
+            this.powerBombsChkBox.Text = "Power Bombs";
+            this.powerBombsChkBox.UseVisualStyleBackColor = true;
+            this.powerBombsChkBox.CheckedChanged += new System.EventHandler(this.powerBombsChkBox_CheckedChanged);
             // 
-            // label13
+            // missileLauncherChkBox
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(233, 104);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(142, 20);
-            this.label13.TabIndex = 10;
-            this.label13.Text = "Wave Beam : ???";
+            this.missileLauncherChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.missileLauncherChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.missileLauncherChkBox.Location = new System.Drawing.Point(3, 133);
+            this.missileLauncherChkBox.Name = "missileLauncherChkBox";
+            this.missileLauncherChkBox.Size = new System.Drawing.Size(181, 20);
+            this.missileLauncherChkBox.TabIndex = 13;
+            this.missileLauncherChkBox.Text = "Missile Launcher";
+            this.missileLauncherChkBox.UseVisualStyleBackColor = true;
+            this.missileLauncherChkBox.CheckedChanged += new System.EventHandler(this.missileLauncherChkBox_CheckedChanged);
             // 
-            // label12
+            // chargeBeamChkBox
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(233, 130);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(122, 20);
-            this.label12.TabIndex = 9;
-            this.label12.Text = "Ice Beam : ???";
+            this.chargeBeamChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chargeBeamChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chargeBeamChkBox.Location = new System.Drawing.Point(190, 133);
+            this.chargeBeamChkBox.Name = "chargeBeamChkBox";
+            this.chargeBeamChkBox.Size = new System.Drawing.Size(181, 20);
+            this.chargeBeamChkBox.TabIndex = 14;
+            this.chargeBeamChkBox.Text = "Charge Beam";
+            this.chargeBeamChkBox.UseVisualStyleBackColor = true;
+            this.chargeBeamChkBox.CheckedChanged += new System.EventHandler(this.chargeBeamChkBox_CheckedChanged);
             // 
-            // label11
+            // superMissileChkBox
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(233, 158);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(156, 20);
-            this.label11.TabIndex = 8;
-            this.label11.Text = "Plasma Beam : ???";
+            this.superMissileChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.superMissileChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.superMissileChkBox.Location = new System.Drawing.Point(3, 159);
+            this.superMissileChkBox.Name = "superMissileChkBox";
+            this.superMissileChkBox.Size = new System.Drawing.Size(181, 20);
+            this.superMissileChkBox.TabIndex = 15;
+            this.superMissileChkBox.Text = "Super Missile";
+            this.superMissileChkBox.UseVisualStyleBackColor = true;
+            this.superMissileChkBox.CheckedChanged += new System.EventHandler(this.superMissileChkBox_CheckedChanged);
             // 
-            // label10
+            // grappleBeamChkBox
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(7, 210);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(153, 20);
-            this.label10.TabIndex = 7;
-            this.label10.Text = "Super Missile : ???";
+            this.grappleBeamChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grappleBeamChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.grappleBeamChkBox.Location = new System.Drawing.Point(190, 159);
+            this.grappleBeamChkBox.Name = "grappleBeamChkBox";
+            this.grappleBeamChkBox.Size = new System.Drawing.Size(181, 20);
+            this.grappleBeamChkBox.TabIndex = 16;
+            this.grappleBeamChkBox.Text = "Grapple Beam";
+            this.grappleBeamChkBox.UseVisualStyleBackColor = true;
+            this.grappleBeamChkBox.CheckedChanged += new System.EventHandler(this.grappleBeamChkBox_CheckedChanged);
             // 
-            // label9
+            // variaSuitChkBox
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 184);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(179, 20);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "Missile Launcher : ???";
+            this.variaSuitChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.variaSuitChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.variaSuitChkBox.Location = new System.Drawing.Point(3, 185);
+            this.variaSuitChkBox.Name = "variaSuitChkBox";
+            this.variaSuitChkBox.Size = new System.Drawing.Size(181, 20);
+            this.variaSuitChkBox.TabIndex = 17;
+            this.variaSuitChkBox.Text = "Varia Suit";
+            this.variaSuitChkBox.UseVisualStyleBackColor = true;
+            this.variaSuitChkBox.CheckedChanged += new System.EventHandler(this.variaSuitChkBox_CheckedChanged);
             // 
-            // label8
+            // wavebusterChkBox
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 78);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(190, 20);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "Morph Ball Bombs : ???";
+            this.wavebusterChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.wavebusterChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.wavebusterChkBox.Location = new System.Drawing.Point(190, 185);
+            this.wavebusterChkBox.Name = "wavebusterChkBox";
+            this.wavebusterChkBox.Size = new System.Drawing.Size(181, 20);
+            this.wavebusterChkBox.TabIndex = 18;
+            this.wavebusterChkBox.Text = "Wavebuster";
+            this.wavebusterChkBox.UseVisualStyleBackColor = true;
+            this.wavebusterChkBox.CheckedChanged += new System.EventHandler(this.wavebusterChkBox_CheckedChanged);
             // 
-            // label7
+            // gravitySuitChkBox
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(233, 78);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(135, 20);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "XRay Visor : ???";
+            this.gravitySuitChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gravitySuitChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.gravitySuitChkBox.Location = new System.Drawing.Point(3, 211);
+            this.gravitySuitChkBox.Name = "gravitySuitChkBox";
+            this.gravitySuitChkBox.Size = new System.Drawing.Size(181, 20);
+            this.gravitySuitChkBox.TabIndex = 19;
+            this.gravitySuitChkBox.Text = "Gravity Suit";
+            this.gravitySuitChkBox.UseVisualStyleBackColor = true;
+            this.gravitySuitChkBox.CheckedChanged += new System.EventHandler(this.gravitySuitChkBox_CheckedChanged);
             // 
-            // label6
+            // iceSpreaderChkBox
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(233, 53);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(156, 20);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Thermal Visor : ???";
+            this.iceSpreaderChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.iceSpreaderChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iceSpreaderChkBox.Location = new System.Drawing.Point(190, 211);
+            this.iceSpreaderChkBox.Name = "iceSpreaderChkBox";
+            this.iceSpreaderChkBox.Size = new System.Drawing.Size(181, 20);
+            this.iceSpreaderChkBox.TabIndex = 20;
+            this.iceSpreaderChkBox.Text = "Ice Spreader";
+            this.iceSpreaderChkBox.UseVisualStyleBackColor = true;
+            this.iceSpreaderChkBox.CheckedChanged += new System.EventHandler(this.iceSpreaderChkBox_CheckedChanged);
             // 
-            // label5
+            // phazonSuitChkBox
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 53);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(132, 20);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Morph Ball : ???";
+            this.phazonSuitChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.phazonSuitChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.phazonSuitChkBox.Location = new System.Drawing.Point(3, 237);
+            this.phazonSuitChkBox.Name = "phazonSuitChkBox";
+            this.phazonSuitChkBox.Size = new System.Drawing.Size(181, 20);
+            this.phazonSuitChkBox.TabIndex = 21;
+            this.phazonSuitChkBox.Text = "Phazon Suit";
+            this.phazonSuitChkBox.UseVisualStyleBackColor = true;
+            this.phazonSuitChkBox.CheckedChanged += new System.EventHandler(this.phazonSuitChkBox_CheckedChanged);
+            // 
+            // flamethrowerChkBox
+            // 
+            this.flamethrowerChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flamethrowerChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.flamethrowerChkBox.Location = new System.Drawing.Point(190, 237);
+            this.flamethrowerChkBox.Name = "flamethrowerChkBox";
+            this.flamethrowerChkBox.Size = new System.Drawing.Size(181, 20);
+            this.flamethrowerChkBox.TabIndex = 22;
+            this.flamethrowerChkBox.Text = "Flamethrower";
+            this.flamethrowerChkBox.UseVisualStyleBackColor = true;
+            this.flamethrowerChkBox.CheckedChanged += new System.EventHandler(this.flamethrowerChkBox_CheckedChanged);
             // 
             // button1
             // 
@@ -640,6 +763,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -651,29 +775,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -700,6 +802,28 @@
         private System.Windows.Forms.Label lblArtifact_12;
         private System.Windows.Forms.Label lblArtifact_11;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.CheckBox spaceJumpBootsChkBox;
+        private System.Windows.Forms.CheckBox xrayVisorChkBox;
+        private System.Windows.Forms.CheckBox thermalVisorChkBox;
+        private System.Windows.Forms.CheckBox morphBallChkBox;
+        private System.Windows.Forms.CheckBox morphBallBombsChkBox;
+        private System.Windows.Forms.CheckBox waveBeamChkBox;
+        private System.Windows.Forms.CheckBox spiderBallChkBox;
+        private System.Windows.Forms.CheckBox iceBeamChkBox;
+        private System.Windows.Forms.CheckBox boostBallChkBox;
+        private System.Windows.Forms.CheckBox plasmaBeamChkBox;
+        private System.Windows.Forms.CheckBox powerBombsChkBox;
+        private System.Windows.Forms.CheckBox missileLauncherChkBox;
+        private System.Windows.Forms.CheckBox chargeBeamChkBox;
+        private System.Windows.Forms.CheckBox superMissileChkBox;
+        private System.Windows.Forms.CheckBox grappleBeamChkBox;
+        private System.Windows.Forms.CheckBox variaSuitChkBox;
+        private System.Windows.Forms.CheckBox wavebusterChkBox;
+        private System.Windows.Forms.CheckBox gravitySuitChkBox;
+        private System.Windows.Forms.CheckBox iceSpreaderChkBox;
+        private System.Windows.Forms.CheckBox phazonSuitChkBox;
+        private System.Windows.Forms.CheckBox flamethrowerChkBox;
     }
 }
 

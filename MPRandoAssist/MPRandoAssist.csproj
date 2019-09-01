@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ComboBoxExtension.cs" />
+    <Compile Include="Extensions\LabelExtension.cs" />
+    <Compile Include="Extensions\CheckBoxExtension.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,10 +58,28 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="MemoryUtils.cs" />
+    <Compile Include="Dialogs\PowerBombsCountDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\PowerBombsCountDialog.Designer.cs">
+      <DependentUpon>PowerBombsCountDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\MissileCountDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\MissileCountDialog.Designer.cs">
+      <DependentUpon>MissileCountDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\PowerBombsCountDialog.resx">
+      <DependentUpon>PowerBombsCountDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MissileCountDialog.resx">
+      <DependentUpon>MissileCountDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

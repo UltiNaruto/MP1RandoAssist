@@ -63,20 +63,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblArtifact_5 = new System.Windows.Forms.Label();
+            this.lblArtifact_8 = new System.Windows.Forms.Label();
+            this.lblArtifact_9 = new System.Windows.Forms.Label();
+            this.lblArtifact_4 = new System.Windows.Forms.Label();
+            this.lblArtifact_6 = new System.Windows.Forms.Label();
+            this.lblArtifact_7 = new System.Windows.Forms.Label();
+            this.lblArtifact_10 = new System.Windows.Forms.Label();
+            this.lblArtifact_3 = new System.Windows.Forms.Label();
+            this.lblArtifact_12 = new System.Windows.Forms.Label();
+            this.lblArtifact_11 = new System.Windows.Forms.Label();
             this.lblArtifact_2 = new System.Windows.Forms.Label();
             this.lblArtifact_1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.lblArtifact_11 = new System.Windows.Forms.Label();
-            this.lblArtifact_12 = new System.Windows.Forms.Label();
-            this.lblArtifact_3 = new System.Windows.Forms.Label();
-            this.lblArtifact_10 = new System.Windows.Forms.Label();
-            this.lblArtifact_7 = new System.Windows.Forms.Label();
-            this.lblArtifact_6 = new System.Windows.Forms.Label();
-            this.lblArtifact_4 = new System.Windows.Forms.Label();
-            this.lblArtifact_9 = new System.Windows.Forms.Label();
-            this.lblArtifact_8 = new System.Windows.Forms.Label();
-            this.lblArtifact_5 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -467,6 +468,96 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Artifacts";
             // 
+            // lblArtifact_5
+            // 
+            this.lblArtifact_5.AutoSize = true;
+            this.lblArtifact_5.Location = new System.Drawing.Point(7, 76);
+            this.lblArtifact_5.Name = "lblArtifact_5";
+            this.lblArtifact_5.Size = new System.Drawing.Size(115, 20);
+            this.lblArtifact_5.TabIndex = 12;
+            this.lblArtifact_5.Text = "Lifegiver : ???";
+            // 
+            // lblArtifact_8
+            // 
+            this.lblArtifact_8.AutoSize = true;
+            this.lblArtifact_8.Location = new System.Drawing.Point(7, 102);
+            this.lblArtifact_8.Name = "lblArtifact_8";
+            this.lblArtifact_8.Size = new System.Drawing.Size(101, 20);
+            this.lblArtifact_8.TabIndex = 11;
+            this.lblArtifact_8.Text = "Nature : ???";
+            // 
+            // lblArtifact_9
+            // 
+            this.lblArtifact_9.AutoSize = true;
+            this.lblArtifact_9.Location = new System.Drawing.Point(117, 102);
+            this.lblArtifact_9.Name = "lblArtifact_9";
+            this.lblArtifact_9.Size = new System.Drawing.Size(80, 20);
+            this.lblArtifact_9.TabIndex = 10;
+            this.lblArtifact_9.Text = "Sun : ???";
+            // 
+            // lblArtifact_4
+            // 
+            this.lblArtifact_4.AutoSize = true;
+            this.lblArtifact_4.Location = new System.Drawing.Point(250, 76);
+            this.lblArtifact_4.Name = "lblArtifact_4";
+            this.lblArtifact_4.Size = new System.Drawing.Size(84, 20);
+            this.lblArtifact_4.TabIndex = 9;
+            this.lblArtifact_4.Text = "Wild : ???";
+            // 
+            // lblArtifact_6
+            // 
+            this.lblArtifact_6.AutoSize = true;
+            this.lblArtifact_6.Location = new System.Drawing.Point(250, 50);
+            this.lblArtifact_6.Name = "lblArtifact_6";
+            this.lblArtifact_6.Size = new System.Drawing.Size(107, 20);
+            this.lblArtifact_6.TabIndex = 8;
+            this.lblArtifact_6.Text = "Warrior : ???";
+            // 
+            // lblArtifact_7
+            // 
+            this.lblArtifact_7.AutoSize = true;
+            this.lblArtifact_7.Location = new System.Drawing.Point(7, 24);
+            this.lblArtifact_7.Name = "lblArtifact_7";
+            this.lblArtifact_7.Size = new System.Drawing.Size(99, 20);
+            this.lblArtifact_7.TabIndex = 7;
+            this.lblArtifact_7.Text = "Chozo : ???";
+            // 
+            // lblArtifact_10
+            // 
+            this.lblArtifact_10.AutoSize = true;
+            this.lblArtifact_10.Location = new System.Drawing.Point(250, 102);
+            this.lblArtifact_10.Name = "lblArtifact_10";
+            this.lblArtifact_10.Size = new System.Drawing.Size(95, 20);
+            this.lblArtifact_10.TabIndex = 6;
+            this.lblArtifact_10.Text = "World : ???";
+            // 
+            // lblArtifact_3
+            // 
+            this.lblArtifact_3.AutoSize = true;
+            this.lblArtifact_3.Location = new System.Drawing.Point(7, 50);
+            this.lblArtifact_3.Name = "lblArtifact_3";
+            this.lblArtifact_3.Size = new System.Drawing.Size(90, 20);
+            this.lblArtifact_3.TabIndex = 5;
+            this.lblArtifact_3.Text = "Elder : ???";
+            // 
+            // lblArtifact_12
+            // 
+            this.lblArtifact_12.AutoSize = true;
+            this.lblArtifact_12.Location = new System.Drawing.Point(117, 24);
+            this.lblArtifact_12.Name = "lblArtifact_12";
+            this.lblArtifact_12.Size = new System.Drawing.Size(117, 20);
+            this.lblArtifact_12.TabIndex = 4;
+            this.lblArtifact_12.Text = "Newborn : ???";
+            // 
+            // lblArtifact_11
+            // 
+            this.lblArtifact_11.AutoSize = true;
+            this.lblArtifact_11.Location = new System.Drawing.Point(117, 50);
+            this.lblArtifact_11.Name = "lblArtifact_11";
+            this.lblArtifact_11.Size = new System.Drawing.Size(90, 20);
+            this.lblArtifact_11.TabIndex = 3;
+            this.lblArtifact_11.Text = "Spirit : ???";
+            // 
             // lblArtifact_2
             // 
             this.lblArtifact_2.AutoSize = true;
@@ -487,11 +578,12 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.checkBox1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label26, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -516,95 +608,17 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // lblArtifact_11
+            // label26
             // 
-            this.lblArtifact_11.AutoSize = true;
-            this.lblArtifact_11.Location = new System.Drawing.Point(117, 50);
-            this.lblArtifact_11.Name = "lblArtifact_11";
-            this.lblArtifact_11.Size = new System.Drawing.Size(90, 20);
-            this.lblArtifact_11.TabIndex = 3;
-            this.lblArtifact_11.Text = "Spirit : ???";
-            // 
-            // lblArtifact_12
-            // 
-            this.lblArtifact_12.AutoSize = true;
-            this.lblArtifact_12.Location = new System.Drawing.Point(117, 24);
-            this.lblArtifact_12.Name = "lblArtifact_12";
-            this.lblArtifact_12.Size = new System.Drawing.Size(117, 20);
-            this.lblArtifact_12.TabIndex = 4;
-            this.lblArtifact_12.Text = "Newborn : ???";
-            // 
-            // lblArtifact_3
-            // 
-            this.lblArtifact_3.AutoSize = true;
-            this.lblArtifact_3.Location = new System.Drawing.Point(7, 50);
-            this.lblArtifact_3.Name = "lblArtifact_3";
-            this.lblArtifact_3.Size = new System.Drawing.Size(90, 20);
-            this.lblArtifact_3.TabIndex = 5;
-            this.lblArtifact_3.Text = "Elder : ???";
-            // 
-            // lblArtifact_10
-            // 
-            this.lblArtifact_10.AutoSize = true;
-            this.lblArtifact_10.Location = new System.Drawing.Point(250, 102);
-            this.lblArtifact_10.Name = "lblArtifact_10";
-            this.lblArtifact_10.Size = new System.Drawing.Size(95, 20);
-            this.lblArtifact_10.TabIndex = 6;
-            this.lblArtifact_10.Text = "World : ???";
-            // 
-            // lblArtifact_7
-            // 
-            this.lblArtifact_7.AutoSize = true;
-            this.lblArtifact_7.Location = new System.Drawing.Point(7, 24);
-            this.lblArtifact_7.Name = "lblArtifact_7";
-            this.lblArtifact_7.Size = new System.Drawing.Size(99, 20);
-            this.lblArtifact_7.TabIndex = 7;
-            this.lblArtifact_7.Text = "Chozo : ???";
-            // 
-            // lblArtifact_6
-            // 
-            this.lblArtifact_6.AutoSize = true;
-            this.lblArtifact_6.Location = new System.Drawing.Point(250, 50);
-            this.lblArtifact_6.Name = "lblArtifact_6";
-            this.lblArtifact_6.Size = new System.Drawing.Size(107, 20);
-            this.lblArtifact_6.TabIndex = 8;
-            this.lblArtifact_6.Text = "Warrior : ???";
-            // 
-            // lblArtifact_4
-            // 
-            this.lblArtifact_4.AutoSize = true;
-            this.lblArtifact_4.Location = new System.Drawing.Point(250, 76);
-            this.lblArtifact_4.Name = "lblArtifact_4";
-            this.lblArtifact_4.Size = new System.Drawing.Size(84, 20);
-            this.lblArtifact_4.TabIndex = 9;
-            this.lblArtifact_4.Text = "Wild : ???";
-            // 
-            // lblArtifact_9
-            // 
-            this.lblArtifact_9.AutoSize = true;
-            this.lblArtifact_9.Location = new System.Drawing.Point(117, 102);
-            this.lblArtifact_9.Name = "lblArtifact_9";
-            this.lblArtifact_9.Size = new System.Drawing.Size(80, 20);
-            this.lblArtifact_9.TabIndex = 10;
-            this.lblArtifact_9.Text = "Sun : ???";
-            // 
-            // lblArtifact_8
-            // 
-            this.lblArtifact_8.AutoSize = true;
-            this.lblArtifact_8.Location = new System.Drawing.Point(7, 102);
-            this.lblArtifact_8.Name = "lblArtifact_8";
-            this.lblArtifact_8.Size = new System.Drawing.Size(101, 20);
-            this.lblArtifact_8.TabIndex = 11;
-            this.lblArtifact_8.Text = "Nature : ???";
-            // 
-            // lblArtifact_5
-            // 
-            this.lblArtifact_5.AutoSize = true;
-            this.lblArtifact_5.Location = new System.Drawing.Point(7, 76);
-            this.lblArtifact_5.Name = "lblArtifact_5";
-            this.lblArtifact_5.Size = new System.Drawing.Size(115, 20);
-            this.lblArtifact_5.TabIndex = 12;
-            this.lblArtifact_5.Text = "Lifegiver : ???";
+            this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label26.Location = new System.Drawing.Point(120, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(111, 33);
+            this.label26.TabIndex = 1;
+            this.label26.Text = "00:00:00.000";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
@@ -685,6 +699,7 @@
         private System.Windows.Forms.Label lblArtifact_3;
         private System.Windows.Forms.Label lblArtifact_12;
         private System.Windows.Forms.Label lblArtifact_11;
+        private System.Windows.Forms.Label label26;
     }
 }
 

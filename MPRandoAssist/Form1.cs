@@ -33,10 +33,15 @@ namespace MPRandoAssist
 
         #region Constants
         internal const long GCBaseRamAddr = 0x80000000;
-        internal const long OFF_CGAMEGLOBALOBJECTS = 0x457798;
-        internal const long OFF_CGAMESTATE = OFF_CGAMEGLOBALOBJECTS + 0x134;
+        internal const long OFF_CGAMEGLOBALOBJECTS_NTSC = 0x457798;
+        internal const long OFF_CGAMEGLOBALOBJECTS_PAL = 0x3DF678;
+        internal long OFF_CGAMESTATE(bool isPAL)
+        {
+            return isPAL ? OFF_CGAMEGLOBALOBJECTS_PAL + 0x134 : OFF_CGAMEGLOBALOBJECTS_NTSC + 0x134;
+        }
         internal const long OFF_PLAYTIME = 0xA0;
-        internal const long OFF_CSTATEMANAGER = 0x45A1A8;
+        internal const long OFF_CSTATEMANAGER_NTSC = 0x45A1A8;
+        internal const long OFF_CSTATEMANAGER_PAL = 0x73E738;
         internal const long OFF_CWORLD = 0x850;
         internal const long OFF_ROOM_ID = 0x68;
         internal const long OFF_WORLD_ID = 0x6C;
@@ -49,8 +54,8 @@ namespace MPRandoAssist
         internal const long REGEN_HEALTH_COOLDOWN_IN_SEC = REGEN_HEALTH_COOLDOWN_IN_MIN * 60;
         internal const long REGEN_HEALTH_COOLDOWN = REGEN_HEALTH_COOLDOWN_IN_SEC * 1000;
 
-        internal const long OFF_MORPHBALLBOMBS_COUNT = 0x457D1B;
-        internal const long OFF_GAME_STATUS = 0x457F4D;
+        internal const long OFF_MORPHBALLBOMBS_COUNT_NTSC = 0x457D1B;
+        internal const long OFF_MORPHBALLBOMBS_COUNT_PAL = 0x3DFBFB;
         internal const long OFF_HEALTH = 0x0C;
         internal const long OFF_CRITICAL_HEALTH = OFF_HEALTH + 4;
         internal const long OFF_POWERBEAM_OBTAINED = 0x2F;
@@ -219,23 +224,15 @@ namespace MPRandoAssist
         {
             get
             {
-                return MemoryUtils.ReadUInt8(this.dolphin, this.RAMBaseAddr + OFF_MORPHBALLBOMBS_COUNT);
+                return MemoryUtils.ReadUInt8(this.dolphin, Game_Code[3] == 'P' ? this.RAMBaseAddr + OFF_MORPHBALLBOMBS_COUNT_PAL : this.RAMBaseAddr + OFF_MORPHBALLBOMBS_COUNT_NTSC);
             }
             set
             {
-                MemoryUtils.WriteUInt8(this.dolphin, this.RAMBaseAddr + OFF_MORPHBALLBOMBS_COUNT, value);
+                MemoryUtils.WriteUInt8(this.dolphin, Game_Code[3] == 'P' ? this.RAMBaseAddr + OFF_MORPHBALLBOMBS_COUNT_PAL : this.RAMBaseAddr + OFF_MORPHBALLBOMBS_COUNT_NTSC, value);
             }
         }
 
         internal const byte MaxMorphBallBombs = 3;
-
-        internal sbyte Game_Status
-        {
-            get
-            {
-                return MemoryUtils.ReadInt8(this.dolphin, this.RAMBaseAddr + OFF_GAME_STATUS);
-            }
-        }
 
         internal ushort Health
         {
@@ -840,39 +837,70 @@ namespace MPRandoAssist
             return DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
         }
 
-        bool IsValidChar(char c)
+        private static bool IsValidGameCode(String s, int i = 0)
         {
-            if (c >= 'A' && c <= 'Z')
-                return true;
-            if (c >= '0' && c <= '9')
-                return true;
-            return false;
+            if (s == "") return false;
+            if (s.Length != 6) return false;
+            if (i == 6) return true;
+            if ((s[i] >= 'A' && s[i] <= 'Z') || (s[i] >= '0' && s[i] <= '9')) return IsValidGameCode(s, i + 1);
+            else return false;
         }
 
-        long GetRAMBaseAddr()
+        void GetRAMBaseAddr()
         {
-            long MaxAddress = Int64.MaxValue;
-            long address = GCBaseRamAddr;
+            var MaxAddress = Is32BitProcess ? Int32.MaxValue : Int64.MaxValue;
+            long address = 0;
+            MEMORY_BASIC_INFORMATION m = new MEMORY_BASIC_INFORMATION();
             do
             {
-                MEMORY_BASIC_INFORMATION m;
-                if (VirtualQueryEx(this.dolphin.Handle, (IntPtr)address, out m, (uint)Marshal.SizeOf(typeof(MEMORY_BASIC_INFORMATION))) == 0)
-                    break;
-                String game_code = Encoding.ASCII.GetString(MemoryUtils.Read(this.dolphin, this.Is32BitProcess ? m.AllocationBase.ToInt32() : m.AllocationBase.ToInt64(), 8)).Trim('\0');
-                bool game_code_check = ((game_code.Length - 6) * (game_code.Length - 3)) <= 0;
-                for (int i = 0; i < game_code.Length; i++) if (!IsValidChar(game_code[i])) game_code_check = false;
-                if (m.Type == TypeEnum.MEM_MAPPED && m.AllocationProtect == AllocationProtectEnum.PAGE_READWRITE && m.State != StateEnum.MEM_FREE && m.RegionSize.ToInt64() > 0x20000 && game_code_check)
+                Thread.Sleep(1);
+                VirtualQueryEx(dolphin.Handle, new IntPtr(address), out m, (uint)Marshal.SizeOf(m));
+                if (m.AllocationBase == IntPtr.Zero && m.Protect == AllocationProtectEnum.PAGE_NOACCESS)
                 {
-                    if (this.Is32BitProcess)
-                        return m.AllocationBase.ToInt32();
-                    else
-                        return m.AllocationBase.ToInt64();
+                    if (address == (long)m.BaseAddress + (long)m.RegionSize)
+                        break;
+                    address = (long)m.BaseAddress + (long)m.RegionSize;
+                    continue;
                 }
-                if (address == (long)m.BaseAddress + (long)m.RegionSize)
-                    break;
-                address = (long)m.BaseAddress + (long)m.RegionSize;
+                if (m.RegionSize.ToInt64() <= 0x20000)
+                {
+                    if (address == (long)m.BaseAddress + (long)m.RegionSize)
+                        break;
+                    address = (long)m.BaseAddress + (long)m.RegionSize;
+                    continue;
+                }
+                if (m.Type != TypeEnum.MEM_MAPPED)
+                {
+                    if (address == (long)m.BaseAddress + (long)m.RegionSize)
+                        break;
+                    address = (long)m.BaseAddress + (long)m.RegionSize;
+                    continue;
+                }
+                if (m.AllocationProtect != AllocationProtectEnum.PAGE_READWRITE)
+                {
+                    if (address == (long)m.BaseAddress + (long)m.RegionSize)
+                        break;
+                    address = (long)m.BaseAddress + (long)m.RegionSize;
+                    continue;
+                }
+                if (m.State == StateEnum.MEM_FREE)
+                {
+                    if (address == (long)m.BaseAddress + (long)m.RegionSize)
+                        break;
+                    address = (long)m.BaseAddress + (long)m.RegionSize;
+                    continue;
+                }
+                RAMBaseAddr = Is32BitProcess ? m.AllocationBase.ToInt32() : m.AllocationBase.ToInt64();
+                if (!IsValidGameCode(Encoding.ASCII.GetString(MemoryUtils.Read(dolphin, RAMBaseAddr, 6)).TrimEnd('\0')))
+                {
+                    RAMBaseAddr = 0;
+                    if (address == (long)m.BaseAddress + (long)m.RegionSize)
+                        break;
+                    address = (long)m.BaseAddress + (long)m.RegionSize;
+                    continue;
+                }
+                break;
             } while (address <= MaxAddress);
-            return 0;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -888,7 +916,7 @@ namespace MPRandoAssist
                     return;
                 }
                 this.Is32BitProcess = this.dolphin.MainModule.BaseAddress.ToInt64() < UInt32.MaxValue;
-                this.RAMBaseAddr = GetRAMBaseAddr();
+                GetRAMBaseAddr();
                 if (this.RAMBaseAddr == 0)
                 {
                     MessageBox.Show("Metroid Prime is not running!\r\nExiting...");
@@ -922,8 +950,11 @@ namespace MPRandoAssist
                                 this.Exiting = true;
                                 break;
                             }
-                            if (Game_Status != 1)
+                            if (GetPlayerStateOffset() == -1)
+                            {
+                                Thread.Sleep(100);
                                 continue;
+                            }
                             this.label26.SetTextSafely(GetIGTAsString());
                             if (WasInSaveStation != IsInSaveStationRoom && IsInSaveStationRoom)
                                 Health = MaxHealth;
@@ -994,7 +1025,7 @@ namespace MPRandoAssist
 
         private long GetIGT()
         {
-            long GC_CGameState = MemoryUtils.ReadUInt32BE(this.dolphin, this.RAMBaseAddr + OFF_CGAMESTATE);
+            long GC_CGameState = MemoryUtils.ReadUInt32BE(this.dolphin, this.RAMBaseAddr + OFF_CGAMESTATE(Game_Code[3] == 'P'));
             if (GC_CGameState < GCBaseRamAddr)
                 return -1;
             GC_CGameState -= GCBaseRamAddr;
@@ -1012,7 +1043,10 @@ namespace MPRandoAssist
 
         private long GetWorldOffset()
         {
-            long GC_CWorld = MemoryUtils.ReadUInt32BE(this.dolphin, this.RAMBaseAddr + OFF_CSTATEMANAGER + OFF_CWORLD);
+            long offset = OFF_CSTATEMANAGER_NTSC;
+            if (Game_Code[3] == 'P')
+                offset = OFF_CSTATEMANAGER_PAL;
+            long GC_CWorld = MemoryUtils.ReadUInt32BE(this.dolphin, this.RAMBaseAddr + offset + OFF_CWORLD);
             if (GC_CWorld < GCBaseRamAddr)
                 return -1;
             return GC_CWorld - GCBaseRamAddr;
@@ -1020,12 +1054,19 @@ namespace MPRandoAssist
 
         private long GetPlayerStateOffset()
         {
-            long GC_CPlayerState = MemoryUtils.ReadUInt32BE(this.dolphin, this.RAMBaseAddr + OFF_CSTATEMANAGER + OFF_CPLAYERSTATE);
+            bool isPAL = Game_Code[3] == 'P';
+            long offset = OFF_CSTATEMANAGER_NTSC;
+            if (isPAL)
+                offset = OFF_CSTATEMANAGER_PAL;
+            long GC_CPlayerState = MemoryUtils.ReadUInt32BE(this.dolphin, this.RAMBaseAddr + offset + OFF_CPLAYERSTATE);
             if (GC_CPlayerState < GCBaseRamAddr)
                 return -1;
-            GC_CPlayerState = MemoryUtils.ReadUInt32BE(this.dolphin, this.RAMBaseAddr + (GC_CPlayerState - GCBaseRamAddr));
-            if (GC_CPlayerState < GCBaseRamAddr)
-                return -1;
+            if (!isPAL)
+            {
+                GC_CPlayerState = MemoryUtils.ReadUInt32BE(this.dolphin, this.RAMBaseAddr + (GC_CPlayerState - GCBaseRamAddr));
+                if (GC_CPlayerState < GCBaseRamAddr)
+                    return -1;
+            }
             return GC_CPlayerState - GCBaseRamAddr;
         }
 

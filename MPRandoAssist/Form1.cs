@@ -41,7 +41,7 @@ namespace MPRandoAssist
         }
         internal const long OFF_PLAYTIME = 0xA0;
         internal const long OFF_CSTATEMANAGER_NTSC = 0x45A1A8;
-        internal const long OFF_CSTATEMANAGER_PAL = 0x73E738;
+        internal const long OFF_CSTATEMANAGER_PAL = 0x3E2088;
         internal const long OFF_CWORLD = 0x850;
         internal const long OFF_ROOM_ID = 0x68;
         internal const long OFF_WORLD_ID = 0x6C;
@@ -1061,18 +1061,10 @@ namespace MPRandoAssist
             long GC_CPlayerState = MemoryUtils.ReadUInt32BE(this.dolphin, this.RAMBaseAddr + offset + OFF_CPLAYERSTATE);
             if (GC_CPlayerState < GCBaseRamAddr)
                 return -1;
-            if (!isPAL)
-            {
-                GC_CPlayerState = MemoryUtils.ReadUInt32BE(this.dolphin, this.RAMBaseAddr + (GC_CPlayerState - GCBaseRamAddr));
-                if (GC_CPlayerState < GCBaseRamAddr)
-                    return -1;
-            }
+            GC_CPlayerState = MemoryUtils.ReadUInt32BE(this.dolphin, this.RAMBaseAddr + (GC_CPlayerState - GCBaseRamAddr));
+            if (GC_CPlayerState < GCBaseRamAddr)
+                return -1;
             return GC_CPlayerState - GCBaseRamAddr;
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            
         }
 
         private void AutoRefillMissiles()

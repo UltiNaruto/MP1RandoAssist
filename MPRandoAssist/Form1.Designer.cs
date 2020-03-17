@@ -77,6 +77,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label26 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -95,7 +96,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(394, 347);
+            this.groupBox2.Size = new System.Drawing.Size(426, 347);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Character Status";
@@ -140,7 +141,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(374, 286);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(409, 286);
             this.tableLayoutPanel3.TabIndex = 23;
             // 
             // spaceJumpBootsChkBox
@@ -151,7 +152,7 @@
             this.spaceJumpBootsChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.spaceJumpBootsChkBox.Location = new System.Drawing.Point(3, 263);
             this.spaceJumpBootsChkBox.Name = "spaceJumpBootsChkBox";
-            this.spaceJumpBootsChkBox.Size = new System.Drawing.Size(181, 20);
+            this.spaceJumpBootsChkBox.Size = new System.Drawing.Size(198, 20);
             this.spaceJumpBootsChkBox.TabIndex = 23;
             this.spaceJumpBootsChkBox.Text = "Space Jump Boots";
             this.spaceJumpBootsChkBox.UseVisualStyleBackColor = true;
@@ -163,9 +164,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.xrayVisorChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.xrayVisorChkBox.Location = new System.Drawing.Point(190, 29);
+            this.xrayVisorChkBox.Location = new System.Drawing.Point(207, 29);
             this.xrayVisorChkBox.Name = "xrayVisorChkBox";
-            this.xrayVisorChkBox.Size = new System.Drawing.Size(181, 20);
+            this.xrayVisorChkBox.Size = new System.Drawing.Size(199, 20);
             this.xrayVisorChkBox.TabIndex = 6;
             this.xrayVisorChkBox.Text = "XRay Visor";
             this.xrayVisorChkBox.UseVisualStyleBackColor = true;
@@ -177,9 +178,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.thermalVisorChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.thermalVisorChkBox.Location = new System.Drawing.Point(190, 3);
+            this.thermalVisorChkBox.Location = new System.Drawing.Point(207, 3);
             this.thermalVisorChkBox.Name = "thermalVisorChkBox";
-            this.thermalVisorChkBox.Size = new System.Drawing.Size(181, 20);
+            this.thermalVisorChkBox.Size = new System.Drawing.Size(199, 20);
             this.thermalVisorChkBox.TabIndex = 5;
             this.thermalVisorChkBox.Text = "Thermal Visor";
             this.thermalVisorChkBox.UseVisualStyleBackColor = true;
@@ -193,7 +194,7 @@
             this.morphBallChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.morphBallChkBox.Location = new System.Drawing.Point(3, 3);
             this.morphBallChkBox.Name = "morphBallChkBox";
-            this.morphBallChkBox.Size = new System.Drawing.Size(181, 20);
+            this.morphBallChkBox.Size = new System.Drawing.Size(198, 20);
             this.morphBallChkBox.TabIndex = 3;
             this.morphBallChkBox.Text = "Morph Ball";
             this.morphBallChkBox.UseVisualStyleBackColor = true;
@@ -207,7 +208,7 @@
             this.morphBallBombsChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.morphBallBombsChkBox.Location = new System.Drawing.Point(3, 29);
             this.morphBallBombsChkBox.Name = "morphBallBombsChkBox";
-            this.morphBallBombsChkBox.Size = new System.Drawing.Size(181, 20);
+            this.morphBallBombsChkBox.Size = new System.Drawing.Size(198, 20);
             this.morphBallBombsChkBox.TabIndex = 4;
             this.morphBallBombsChkBox.Text = "Morph Ball Bombs";
             this.morphBallBombsChkBox.UseVisualStyleBackColor = true;
@@ -219,9 +220,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.waveBeamChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.waveBeamChkBox.Location = new System.Drawing.Point(190, 55);
+            this.waveBeamChkBox.Location = new System.Drawing.Point(207, 55);
             this.waveBeamChkBox.Name = "waveBeamChkBox";
-            this.waveBeamChkBox.Size = new System.Drawing.Size(181, 20);
+            this.waveBeamChkBox.Size = new System.Drawing.Size(199, 20);
             this.waveBeamChkBox.TabIndex = 8;
             this.waveBeamChkBox.Text = "Wave Beam";
             this.waveBeamChkBox.UseVisualStyleBackColor = true;
@@ -235,7 +236,7 @@
             this.spiderBallChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.spiderBallChkBox.Location = new System.Drawing.Point(3, 55);
             this.spiderBallChkBox.Name = "spiderBallChkBox";
-            this.spiderBallChkBox.Size = new System.Drawing.Size(181, 20);
+            this.spiderBallChkBox.Size = new System.Drawing.Size(198, 20);
             this.spiderBallChkBox.TabIndex = 7;
             this.spiderBallChkBox.Text = "Spider Ball";
             this.spiderBallChkBox.UseVisualStyleBackColor = true;
@@ -247,9 +248,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.iceBeamChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iceBeamChkBox.Location = new System.Drawing.Point(190, 81);
+            this.iceBeamChkBox.Location = new System.Drawing.Point(207, 81);
             this.iceBeamChkBox.Name = "iceBeamChkBox";
-            this.iceBeamChkBox.Size = new System.Drawing.Size(181, 20);
+            this.iceBeamChkBox.Size = new System.Drawing.Size(199, 20);
             this.iceBeamChkBox.TabIndex = 10;
             this.iceBeamChkBox.Text = "Ice Beam";
             this.iceBeamChkBox.UseVisualStyleBackColor = true;
@@ -263,7 +264,7 @@
             this.boostBallChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.boostBallChkBox.Location = new System.Drawing.Point(3, 81);
             this.boostBallChkBox.Name = "boostBallChkBox";
-            this.boostBallChkBox.Size = new System.Drawing.Size(181, 20);
+            this.boostBallChkBox.Size = new System.Drawing.Size(198, 20);
             this.boostBallChkBox.TabIndex = 9;
             this.boostBallChkBox.Text = "Boost Ball";
             this.boostBallChkBox.UseVisualStyleBackColor = true;
@@ -275,9 +276,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.plasmaBeamChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.plasmaBeamChkBox.Location = new System.Drawing.Point(190, 107);
+            this.plasmaBeamChkBox.Location = new System.Drawing.Point(207, 107);
             this.plasmaBeamChkBox.Name = "plasmaBeamChkBox";
-            this.plasmaBeamChkBox.Size = new System.Drawing.Size(181, 20);
+            this.plasmaBeamChkBox.Size = new System.Drawing.Size(199, 20);
             this.plasmaBeamChkBox.TabIndex = 12;
             this.plasmaBeamChkBox.Text = "Plasma Beam";
             this.plasmaBeamChkBox.UseVisualStyleBackColor = true;
@@ -291,7 +292,7 @@
             this.powerBombsChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.powerBombsChkBox.Location = new System.Drawing.Point(3, 107);
             this.powerBombsChkBox.Name = "powerBombsChkBox";
-            this.powerBombsChkBox.Size = new System.Drawing.Size(181, 20);
+            this.powerBombsChkBox.Size = new System.Drawing.Size(198, 20);
             this.powerBombsChkBox.TabIndex = 11;
             this.powerBombsChkBox.Text = "Power Bombs";
             this.powerBombsChkBox.UseVisualStyleBackColor = true;
@@ -305,7 +306,7 @@
             this.missileLauncherChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.missileLauncherChkBox.Location = new System.Drawing.Point(3, 133);
             this.missileLauncherChkBox.Name = "missileLauncherChkBox";
-            this.missileLauncherChkBox.Size = new System.Drawing.Size(181, 20);
+            this.missileLauncherChkBox.Size = new System.Drawing.Size(198, 20);
             this.missileLauncherChkBox.TabIndex = 13;
             this.missileLauncherChkBox.Text = "Missile Launcher";
             this.missileLauncherChkBox.UseVisualStyleBackColor = true;
@@ -317,9 +318,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chargeBeamChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chargeBeamChkBox.Location = new System.Drawing.Point(190, 133);
+            this.chargeBeamChkBox.Location = new System.Drawing.Point(207, 133);
             this.chargeBeamChkBox.Name = "chargeBeamChkBox";
-            this.chargeBeamChkBox.Size = new System.Drawing.Size(181, 20);
+            this.chargeBeamChkBox.Size = new System.Drawing.Size(199, 20);
             this.chargeBeamChkBox.TabIndex = 14;
             this.chargeBeamChkBox.Text = "Charge Beam";
             this.chargeBeamChkBox.UseVisualStyleBackColor = true;
@@ -333,7 +334,7 @@
             this.superMissileChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.superMissileChkBox.Location = new System.Drawing.Point(3, 159);
             this.superMissileChkBox.Name = "superMissileChkBox";
-            this.superMissileChkBox.Size = new System.Drawing.Size(181, 20);
+            this.superMissileChkBox.Size = new System.Drawing.Size(198, 20);
             this.superMissileChkBox.TabIndex = 15;
             this.superMissileChkBox.Text = "Super Missile";
             this.superMissileChkBox.UseVisualStyleBackColor = true;
@@ -345,9 +346,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grappleBeamChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.grappleBeamChkBox.Location = new System.Drawing.Point(190, 159);
+            this.grappleBeamChkBox.Location = new System.Drawing.Point(207, 159);
             this.grappleBeamChkBox.Name = "grappleBeamChkBox";
-            this.grappleBeamChkBox.Size = new System.Drawing.Size(181, 20);
+            this.grappleBeamChkBox.Size = new System.Drawing.Size(199, 20);
             this.grappleBeamChkBox.TabIndex = 16;
             this.grappleBeamChkBox.Text = "Grapple Beam";
             this.grappleBeamChkBox.UseVisualStyleBackColor = true;
@@ -361,7 +362,7 @@
             this.variaSuitChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.variaSuitChkBox.Location = new System.Drawing.Point(3, 185);
             this.variaSuitChkBox.Name = "variaSuitChkBox";
-            this.variaSuitChkBox.Size = new System.Drawing.Size(181, 20);
+            this.variaSuitChkBox.Size = new System.Drawing.Size(198, 20);
             this.variaSuitChkBox.TabIndex = 17;
             this.variaSuitChkBox.Text = "Varia Suit";
             this.variaSuitChkBox.UseVisualStyleBackColor = true;
@@ -373,9 +374,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.wavebusterChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.wavebusterChkBox.Location = new System.Drawing.Point(190, 185);
+            this.wavebusterChkBox.Location = new System.Drawing.Point(207, 185);
             this.wavebusterChkBox.Name = "wavebusterChkBox";
-            this.wavebusterChkBox.Size = new System.Drawing.Size(181, 20);
+            this.wavebusterChkBox.Size = new System.Drawing.Size(199, 20);
             this.wavebusterChkBox.TabIndex = 18;
             this.wavebusterChkBox.Text = "Wavebuster";
             this.wavebusterChkBox.UseVisualStyleBackColor = true;
@@ -389,7 +390,7 @@
             this.gravitySuitChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.gravitySuitChkBox.Location = new System.Drawing.Point(3, 211);
             this.gravitySuitChkBox.Name = "gravitySuitChkBox";
-            this.gravitySuitChkBox.Size = new System.Drawing.Size(181, 20);
+            this.gravitySuitChkBox.Size = new System.Drawing.Size(198, 20);
             this.gravitySuitChkBox.TabIndex = 19;
             this.gravitySuitChkBox.Text = "Gravity Suit";
             this.gravitySuitChkBox.UseVisualStyleBackColor = true;
@@ -401,9 +402,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.iceSpreaderChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iceSpreaderChkBox.Location = new System.Drawing.Point(190, 211);
+            this.iceSpreaderChkBox.Location = new System.Drawing.Point(207, 211);
             this.iceSpreaderChkBox.Name = "iceSpreaderChkBox";
-            this.iceSpreaderChkBox.Size = new System.Drawing.Size(181, 20);
+            this.iceSpreaderChkBox.Size = new System.Drawing.Size(199, 20);
             this.iceSpreaderChkBox.TabIndex = 20;
             this.iceSpreaderChkBox.Text = "Ice Spreader";
             this.iceSpreaderChkBox.UseVisualStyleBackColor = true;
@@ -417,7 +418,7 @@
             this.phazonSuitChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.phazonSuitChkBox.Location = new System.Drawing.Point(3, 237);
             this.phazonSuitChkBox.Name = "phazonSuitChkBox";
-            this.phazonSuitChkBox.Size = new System.Drawing.Size(181, 20);
+            this.phazonSuitChkBox.Size = new System.Drawing.Size(198, 20);
             this.phazonSuitChkBox.TabIndex = 21;
             this.phazonSuitChkBox.Text = "Phazon Suit";
             this.phazonSuitChkBox.UseVisualStyleBackColor = true;
@@ -429,9 +430,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flamethrowerChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.flamethrowerChkBox.Location = new System.Drawing.Point(190, 237);
+            this.flamethrowerChkBox.Location = new System.Drawing.Point(207, 237);
             this.flamethrowerChkBox.Name = "flamethrowerChkBox";
-            this.flamethrowerChkBox.Size = new System.Drawing.Size(181, 20);
+            this.flamethrowerChkBox.Size = new System.Drawing.Size(199, 20);
             this.flamethrowerChkBox.TabIndex = 22;
             this.flamethrowerChkBox.Text = "Flamethrower";
             this.flamethrowerChkBox.UseVisualStyleBackColor = true;
@@ -439,10 +440,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(233, 13);
+            this.button1.Location = new System.Drawing.Point(131, 17);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(152, 34);
+            this.button1.Size = new System.Drawing.Size(286, 34);
             this.button1.TabIndex = 1;
             this.button1.Text = "Regenerate";
             this.button1.UseVisualStyleBackColor = true;
@@ -470,7 +471,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(394, 117);
+            this.groupBox1.Size = new System.Drawing.Size(426, 117);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ammos";
@@ -484,7 +485,7 @@
             "No Refill",
             "Auto Refill",
             "Instant Refill"});
-            this.comboBox3.Location = new System.Drawing.Point(236, 82);
+            this.comboBox3.Location = new System.Drawing.Point(266, 82);
             this.comboBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(151, 28);
@@ -498,7 +499,7 @@
             this.comboBox2.Items.AddRange(new object[] {
             "Normal Refill",
             "Instant Refill"});
-            this.comboBox2.Location = new System.Drawing.Point(236, 51);
+            this.comboBox2.Location = new System.Drawing.Point(266, 51);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(151, 28);
@@ -513,7 +514,7 @@
             "No Refill",
             "Auto Refill",
             "Instant Refill"});
-            this.comboBox1.Location = new System.Drawing.Point(236, 20);
+            this.comboBox1.Location = new System.Drawing.Point(266, 20);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(151, 28);
@@ -548,9 +549,9 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.groupBox3, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 2);
@@ -564,7 +565,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(402, 653);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(432, 653);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // groupBox3
@@ -586,7 +587,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox3.Size = new System.Drawing.Size(394, 132);
+            this.groupBox3.Size = new System.Drawing.Size(426, 132);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Artifacts";
@@ -705,6 +706,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.checkBox1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.label26, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -713,7 +715,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(400, 33);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(432, 33);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // checkBox1
@@ -736,27 +738,38 @@
             this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label26.Location = new System.Drawing.Point(120, 0);
+            this.label26.Location = new System.Drawing.Point(237, 0);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(111, 33);
+            this.label26.Size = new System.Drawing.Size(192, 33);
             this.label26.TabIndex = 1;
-            this.label26.Text = "00:00:00.000";
             this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Location = new System.Drawing.Point(120, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(111, 33);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "00:00:00.000";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGoldenrodYellow;
-            this.ClientSize = new System.Drawing.Size(402, 653);
+            this.ClientSize = new System.Drawing.Size(432, 653);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(420, 700);
-            this.MinimumSize = new System.Drawing.Size(420, 700);
+            this.MaximumSize = new System.Drawing.Size(450, 700);
+            this.MinimumSize = new System.Drawing.Size(450, 700);
             this.Name = "Form1";
             this.ShowIcon = false;
             this.Text = "Metroid Prime Rando Assist";
@@ -824,6 +837,7 @@
         private System.Windows.Forms.CheckBox iceSpreaderChkBox;
         private System.Windows.Forms.CheckBox phazonSuitChkBox;
         private System.Windows.Forms.CheckBox flamethrowerChkBox;
+        private System.Windows.Forms.Label label5;
     }
 }
 

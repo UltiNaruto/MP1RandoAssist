@@ -106,16 +106,37 @@ namespace MPRandoAssist
                         try
                         {
                             if (!emuInit)
+                            {
                                 emuInit = Dolphin.Init();
+                                if (!emuInit)
+                                {
+                                    Thread.Sleep(1);
+                                    continue;
+                                }
+                            }
                             if (emuInit && !gameInit)
+                            {
                                 gameInit = Dolphin.GameInit();
+                                if (!gameInit)
+                                {
+                                    Thread.Sleep(1);
+                                    continue;
+                                }
+                            }
                             if (emuInit && gameInit && !detectVersion)
+                            {
                                 detectVersion = Dolphin.InitMP();
+                                if (!detectVersion)
+                                {
+                                    Thread.Sleep(1);
+                                    continue;
+                                }
+                            }
                             if (emuInit && gameInit && detectVersion)
                             {
                                 if (Dolphin.MetroidPrime.CGameState == -1)
                                 {
-                                    Thread.Sleep(100);
+                                    Thread.Sleep(1);
                                     continue;
                                 }
                                 this.label5.SetTextSafely(Dolphin.MetroidPrime.IGTAsStr);
@@ -123,18 +144,8 @@ namespace MPRandoAssist
                                     Dolphin.MetroidPrime.Health = Dolphin.MetroidPrime.MaxHealth;
                                 WasInSaveStation = Dolphin.MetroidPrime.IsInSaveStationRoom;
                                 this.label1.SetTextSafely("Missiles : " + Dolphin.MetroidPrime.Missiles + " / " + Dolphin.MetroidPrime.MaxMissiles);
-                                if (comboBox1.GetSelectedIndex() == 1)
-                                    AutoRefillMissiles();
-                                else if (comboBox1.GetSelectedIndex() == 2)
-                                    Dolphin.MetroidPrime.Missiles = Dolphin.MetroidPrime.MaxMissiles;
                                 this.label2.SetTextSafely("Morph Ball Bombs : " + Dolphin.MetroidPrime.MorphBallBombs + " / " + Dolphin.MetroidPrime.MaxMorphBallBombs);
-                                if (comboBox2.GetSelectedIndex() == 1)
-                                    Dolphin.MetroidPrime.MorphBallBombs = Dolphin.MetroidPrime.MaxMorphBallBombs;
                                 this.label3.SetTextSafely("Power Bombs : " + Dolphin.MetroidPrime.PowerBombs + " / " + Dolphin.MetroidPrime.MaxPowerBombs);
-                                if (comboBox3.GetSelectedIndex() == 1)
-                                    AutoRefillPowerBombs();
-                                else if (comboBox3.GetSelectedIndex() == 2)
-                                    Dolphin.MetroidPrime.PowerBombs = Dolphin.MetroidPrime.MaxPowerBombs;
                                 this.label4.SetTextSafely("HP : " + Dolphin.MetroidPrime.Health + " / " + Dolphin.MetroidPrime.MaxHealth + (Dolphin.MetroidPrime.Health < 30 ? " /!\\" : ""));
                                 if (!EditingInventory)
                                 {
@@ -164,6 +175,10 @@ namespace MPRandoAssist
                                 {
                                     ((Label)this.groupBox3.Controls["lblArtifact_" + (i + 1)]).SetTextSafely(this.groupBox3.Controls["lblArtifact_" + (i + 1)].Text.Split(':')[0] + ": " + (Dolphin.MetroidPrime.Artifacts(i) ? OBTAINED : UNOBTAINED));
                                 }
+                                HandleRefillMissiles(comboBox1.GetSelectedIndex());
+                                if (comboBox2.GetSelectedIndex() == 1)
+                                    Dolphin.MetroidPrime.MorphBallBombs = Dolphin.MetroidPrime.MaxMorphBallBombs;
+                                HandleRefillPowerBombs(comboBox3.GetSelectedIndex());
                             }
                         }
                         catch
@@ -187,34 +202,55 @@ namespace MPRandoAssist
             }
         }
 
-        private void AutoRefillMissiles()
+        private void HandleRefillMissiles(int type)
         {
-            long curTime = GetCurTimeInMilliseconds();
-            if (Dolphin.MetroidPrime.Missiles == Dolphin.MetroidPrime.MaxMissiles)
-                AutoRefill_Missiles_LastTime = curTime + AUTOREFILL_DELAY;
             if (Dolphin.MetroidPrime.MaxMissiles == 0)
                 return;
+
             if (Dolphin.MetroidPrime.Missiles + 1 > Dolphin.MetroidPrime.MaxMissiles)
                 return;
-            if (curTime - AutoRefill_Missiles_LastTime <= AUTOREFILL_DELAY)
-                return;
-            Dolphin.MetroidPrime.Missiles++;
-            AutoRefill_Missiles_LastTime = curTime;
+
+            if (type == 1)
+            {
+                long curTime = GetCurTimeInMilliseconds();
+                if (Dolphin.MetroidPrime.Missiles == Dolphin.MetroidPrime.MaxMissiles)
+                    AutoRefill_Missiles_LastTime = curTime + AUTOREFILL_DELAY;
+
+                if (curTime - AutoRefill_Missiles_LastTime <= AUTOREFILL_DELAY)
+                    return;
+                Dolphin.MetroidPrime.Missiles++;
+                AutoRefill_Missiles_LastTime = curTime;
+            }
+            if(type == 2)
+            {
+                Dolphin.MetroidPrime.Missiles = Dolphin.MetroidPrime.MaxMissiles;
+            }
         }
 
-        private void AutoRefillPowerBombs()
+        private void HandleRefillPowerBombs(int type)
         {
-            long curTime = GetCurTimeInMilliseconds();
-            if (Dolphin.MetroidPrime.PowerBombs == Dolphin.MetroidPrime.MaxPowerBombs)
-                AutoRefill_PowerBombs_LastTime = curTime + AUTOREFILL_DELAY;
             if (Dolphin.MetroidPrime.MaxPowerBombs == 0)
                 return;
+
             if (Dolphin.MetroidPrime.PowerBombs + 1 > Dolphin.MetroidPrime.MaxPowerBombs)
                 return;
-            if (curTime - AutoRefill_PowerBombs_LastTime <= AUTOREFILL_DELAY)
-                return;
-            Dolphin.MetroidPrime.PowerBombs++;
-            AutoRefill_PowerBombs_LastTime = curTime;
+
+            if (type == 1)
+            {
+                long curTime = GetCurTimeInMilliseconds();
+                if (Dolphin.MetroidPrime.PowerBombs == Dolphin.MetroidPrime.MaxPowerBombs)
+                    AutoRefill_PowerBombs_LastTime = curTime + AUTOREFILL_DELAY;
+
+                if (curTime - AutoRefill_PowerBombs_LastTime <= AUTOREFILL_DELAY)
+                    return;
+                Dolphin.MetroidPrime.PowerBombs++;
+                AutoRefill_PowerBombs_LastTime = curTime;
+            }
+
+            if(type == 2)
+            {
+                Dolphin.MetroidPrime.PowerBombs = Dolphin.MetroidPrime.MaxPowerBombs;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

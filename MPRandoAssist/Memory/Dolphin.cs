@@ -129,20 +129,26 @@ namespace Prime.Memory
         internal static bool InitMP()
         {
             _MetroidPrime = null;
-            if (GameCode[3] == 'E')
+            if (GameCode.Substring(0, 3) == "GM8")
             {
-                if (GameVersion == 0)
-                    _MetroidPrime = new MP1_NTSC_1_00();
-                if (GameVersion == 1)
-                    return false;
-                if (GameVersion == 2)
-                    _MetroidPrime = new MP1_NTSC_1_02();
+                if (GameCode[3] == 'E')
+                {
+                    if (GameVersion == 0)
+                        _MetroidPrime = new MP1_NTSC_1_00();
+                    if (GameVersion == 2)
+                        _MetroidPrime = new MP1_NTSC_1_02();
+                }
+                if (GameCode[3] == 'P')
+                    _MetroidPrime = new MP1_PAL();
             }
-            else if (GameCode[3] == 'P')
-                _MetroidPrime = new MP1_PAL();
-            else
-                return false;
-            return true;
+            if (GameCode.Substring(0, 3) == "R3M")
+            {
+                if (GameCode[3] == 'E')
+                    _MetroidPrime = new MPT_MP1_NTSC();
+                if (GameCode[3] == 'P')
+                    _MetroidPrime = new MPT_MP1_PAL();
+            }
+            return _MetroidPrime != null;
         }
 
         internal static Byte[] Read(long gc_address, int size, bool BigEndian=false)

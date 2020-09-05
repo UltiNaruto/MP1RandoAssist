@@ -134,7 +134,7 @@ namespace MPRandoAssist
                             }
                             if (emuInit && gameInit && detectVersion)
                             {
-                                if (Dolphin.MetroidPrime.CGameState == -1)
+                                if (Dolphin.MetroidPrime.IGT == 0)
                                 {
                                     Thread.Sleep(1);
                                     continue;
@@ -204,18 +204,18 @@ namespace MPRandoAssist
 
         private void HandleRefillMissiles(int type)
         {
+            long curTime = GetCurTimeInMilliseconds();
             if (Dolphin.MetroidPrime.MaxMissiles == 0)
                 return;
 
-            if (Dolphin.MetroidPrime.Missiles + 1 > Dolphin.MetroidPrime.MaxMissiles)
+            if (Dolphin.MetroidPrime.Missiles == Dolphin.MetroidPrime.MaxMissiles)
+            {
+                AutoRefill_Missiles_LastTime = curTime + AUTOREFILL_DELAY;
                 return;
+            }
 
             if (type == 1)
             {
-                long curTime = GetCurTimeInMilliseconds();
-                if (Dolphin.MetroidPrime.Missiles == Dolphin.MetroidPrime.MaxMissiles)
-                    AutoRefill_Missiles_LastTime = curTime + AUTOREFILL_DELAY;
-
                 if (curTime - AutoRefill_Missiles_LastTime <= AUTOREFILL_DELAY)
                     return;
                 Dolphin.MetroidPrime.Missiles++;
@@ -229,18 +229,18 @@ namespace MPRandoAssist
 
         private void HandleRefillPowerBombs(int type)
         {
+            long curTime = GetCurTimeInMilliseconds();
             if (Dolphin.MetroidPrime.MaxPowerBombs == 0)
                 return;
 
-            if (Dolphin.MetroidPrime.PowerBombs + 1 > Dolphin.MetroidPrime.MaxPowerBombs)
+            if (Dolphin.MetroidPrime.PowerBombs == Dolphin.MetroidPrime.MaxPowerBombs)
+            {
+                AutoRefill_PowerBombs_LastTime = curTime + AUTOREFILL_DELAY;
                 return;
+            }
 
             if (type == 1)
             {
-                long curTime = GetCurTimeInMilliseconds();
-                if (Dolphin.MetroidPrime.PowerBombs == Dolphin.MetroidPrime.MaxPowerBombs)
-                    AutoRefill_PowerBombs_LastTime = curTime + AUTOREFILL_DELAY;
-
                 if (curTime - AutoRefill_PowerBombs_LastTime <= AUTOREFILL_DELAY)
                     return;
                 Dolphin.MetroidPrime.PowerBombs++;

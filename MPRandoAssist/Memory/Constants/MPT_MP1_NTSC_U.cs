@@ -2,12 +2,23 @@
 
 namespace Prime.Memory.Constants
 {
-    internal class MP1_PAL : _MP1
+    internal class MPT_MP1_NTSC_U : _MP1
     {
-        internal const long OFF_CGAMEGLOBALOBJECTS = 0x3DF678;
+        internal const long OFF_CGAMEGLOBALOBJECTS = 0x4DEC90;
         internal const long OFF_CGAMESTATE = OFF_CGAMEGLOBALOBJECTS + 0x134;
-        internal const long OFF_CSTATEMANAGER = 0x3E2088;
-        internal const long OFF_MORPHBALLBOMBS_COUNT = 0x3DFBF8;
+        internal const long OFF_CSTATEMANAGER = 0x4BF41C;
+        internal const long OFF_MORPHBALLBOMBS_COUNT = 0x4C0F20;
+
+        internal override long CWorld
+        {
+            get
+            {
+                long result = Dolphin.ReadUInt32(GC.RAMBaseAddress + OFF_CSTATEMANAGER + OFF_CWORLD);
+                if (result < GC.RAMBaseAddress)
+                    return -1;
+                return result;
+            }
+        }
 
         internal override long CGameState
         {
@@ -27,21 +38,7 @@ namespace Prime.Memory.Constants
                 long result = Dolphin.ReadUInt32(GC.RAMBaseAddress + OFF_CSTATEMANAGER + OFF_CPLAYERSTATE);
                 if (result < GC.RAMBaseAddress)
                     return -1;
-                result = Dolphin.ReadUInt32(result);
-                if (result < GC.RAMBaseAddress)
-                    return -1;
-                return result;
-            }
-        }
-
-        internal override long CWorld
-        {
-            get
-            {
-                long result = Dolphin.ReadUInt32(GC.RAMBaseAddress + OFF_CSTATEMANAGER + OFF_CWORLD);
-                if (result < GC.RAMBaseAddress)
-                    return -1;
-                return result;
+                return result + 4;
             }
         }
 
@@ -71,13 +68,13 @@ namespace Prime.Memory.Constants
             {
                 if (CPlayerState == -1)
                     return 0;
-                return (ushort)Dolphin.ReadFloat32(CPlayerState + OFF_HEALTH);
+                return (ushort)Dolphin.ReadFloat32((CPlayerState - 4) + OFF_HEALTH);
             }
             set
             {
                 if (CPlayerState == -1)
                     return;
-                Dolphin.WriteFloat32(CPlayerState + OFF_HEALTH, (float)value);
+                Dolphin.WriteFloat32((CPlayerState - 4) + OFF_HEALTH, (float)value);
             }
         }
 
@@ -87,7 +84,7 @@ namespace Prime.Memory.Constants
             {
                 if (CPlayerState == -1)
                     return 0;
-                return (ushort)(Dolphin.ReadUInt8(CPlayerState + OFF_ENERGYTANKS_OBTAINED) * 100 + 99);
+                return (ushort)(Dolphin.ReadUInt32(CPlayerState + OFF_ENERGYTANKS_OBTAINED) * 100 + 99);
             }
         }
 
@@ -97,7 +94,7 @@ namespace Prime.Memory.Constants
             {
                 if (CGameState == -1)
                     return -1;
-                return (long)(Dolphin.ReadFloat64(CGameState + OFF_PLAYTIME) * 1000);
+                return (long)(Dolphin.ReadFloat64(CGameState + OFF_PLAYTIME + 8) * 1000);
             }
 
             set

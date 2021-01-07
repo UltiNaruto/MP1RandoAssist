@@ -2,12 +2,12 @@
 
 namespace Prime.Memory.Constants
 {
-    internal class MP1_PAL : _MP1
+    internal class MP1_NTSC_K : _MP1
     {
-        internal const long OFF_CGAMEGLOBALOBJECTS = 0x3DF678;
+        internal const long OFF_CGAMEGLOBALOBJECTS = 0x457478;
         internal const long OFF_CGAMESTATE = OFF_CGAMEGLOBALOBJECTS + 0x134;
-        internal const long OFF_CSTATEMANAGER = 0x3E2088;
-        internal const long OFF_MORPHBALLBOMBS_COUNT = 0x3DFBF8;
+        internal const long OFF_CSTATEMANAGER = 0x459E88;
+        internal const long OFF_MORPHBALLBOMBS_COUNT = 0x4579F8;
 
         internal override long CGameState
         {

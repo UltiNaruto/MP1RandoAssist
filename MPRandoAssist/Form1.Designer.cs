@@ -75,9 +75,10 @@
             this.lblArtifact_2 = new System.Windows.Forms.Label();
             this.lblArtifact_1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.fusionSuitChkBox = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label26 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.scanVisorChkBox = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -96,7 +97,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(426, 347);
+            this.groupBox2.Size = new System.Drawing.Size(428, 355);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Character Status";
@@ -106,27 +107,28 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.scanVisorChkBox, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.spaceJumpBootsChkBox, 0, 10);
-            this.tableLayoutPanel3.Controls.Add(this.xrayVisorChkBox, 1, 1);
-            this.tableLayoutPanel3.Controls.Add(this.thermalVisorChkBox, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.morphBallChkBox, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.morphBallBombsChkBox, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.waveBeamChkBox, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.spiderBallChkBox, 0, 2);
-            this.tableLayoutPanel3.Controls.Add(this.iceBeamChkBox, 1, 3);
             this.tableLayoutPanel3.Controls.Add(this.boostBallChkBox, 0, 3);
-            this.tableLayoutPanel3.Controls.Add(this.plasmaBeamChkBox, 1, 4);
             this.tableLayoutPanel3.Controls.Add(this.powerBombsChkBox, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.missileLauncherChkBox, 0, 5);
-            this.tableLayoutPanel3.Controls.Add(this.chargeBeamChkBox, 1, 5);
             this.tableLayoutPanel3.Controls.Add(this.superMissileChkBox, 0, 6);
-            this.tableLayoutPanel3.Controls.Add(this.grappleBeamChkBox, 1, 6);
             this.tableLayoutPanel3.Controls.Add(this.variaSuitChkBox, 0, 7);
-            this.tableLayoutPanel3.Controls.Add(this.wavebusterChkBox, 1, 7);
             this.tableLayoutPanel3.Controls.Add(this.gravitySuitChkBox, 0, 8);
-            this.tableLayoutPanel3.Controls.Add(this.iceSpreaderChkBox, 1, 8);
             this.tableLayoutPanel3.Controls.Add(this.phazonSuitChkBox, 0, 9);
-            this.tableLayoutPanel3.Controls.Add(this.flamethrowerChkBox, 1, 9);
+            this.tableLayoutPanel3.Controls.Add(this.flamethrowerChkBox, 1, 10);
+            this.tableLayoutPanel3.Controls.Add(this.iceSpreaderChkBox, 1, 9);
+            this.tableLayoutPanel3.Controls.Add(this.wavebusterChkBox, 1, 8);
+            this.tableLayoutPanel3.Controls.Add(this.grappleBeamChkBox, 1, 7);
+            this.tableLayoutPanel3.Controls.Add(this.chargeBeamChkBox, 1, 6);
+            this.tableLayoutPanel3.Controls.Add(this.plasmaBeamChkBox, 1, 5);
+            this.tableLayoutPanel3.Controls.Add(this.iceBeamChkBox, 1, 4);
+            this.tableLayoutPanel3.Controls.Add(this.waveBeamChkBox, 1, 3);
+            this.tableLayoutPanel3.Controls.Add(this.xrayVisorChkBox, 1, 2);
+            this.tableLayoutPanel3.Controls.Add(this.thermalVisorChkBox, 1, 1);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(11, 55);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 11;
@@ -141,6 +143,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(409, 286);
             this.tableLayoutPanel3.TabIndex = 23;
             // 
@@ -164,7 +167,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.xrayVisorChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.xrayVisorChkBox.Location = new System.Drawing.Point(207, 29);
+            this.xrayVisorChkBox.Location = new System.Drawing.Point(207, 55);
             this.xrayVisorChkBox.Name = "xrayVisorChkBox";
             this.xrayVisorChkBox.Size = new System.Drawing.Size(199, 20);
             this.xrayVisorChkBox.TabIndex = 6;
@@ -178,7 +181,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.thermalVisorChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.thermalVisorChkBox.Location = new System.Drawing.Point(207, 3);
+            this.thermalVisorChkBox.Location = new System.Drawing.Point(207, 29);
             this.thermalVisorChkBox.Name = "thermalVisorChkBox";
             this.thermalVisorChkBox.Size = new System.Drawing.Size(199, 20);
             this.thermalVisorChkBox.TabIndex = 5;
@@ -220,7 +223,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.waveBeamChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.waveBeamChkBox.Location = new System.Drawing.Point(207, 55);
+            this.waveBeamChkBox.Location = new System.Drawing.Point(207, 81);
             this.waveBeamChkBox.Name = "waveBeamChkBox";
             this.waveBeamChkBox.Size = new System.Drawing.Size(199, 20);
             this.waveBeamChkBox.TabIndex = 8;
@@ -248,7 +251,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.iceBeamChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iceBeamChkBox.Location = new System.Drawing.Point(207, 81);
+            this.iceBeamChkBox.Location = new System.Drawing.Point(207, 107);
             this.iceBeamChkBox.Name = "iceBeamChkBox";
             this.iceBeamChkBox.Size = new System.Drawing.Size(199, 20);
             this.iceBeamChkBox.TabIndex = 10;
@@ -276,7 +279,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.plasmaBeamChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.plasmaBeamChkBox.Location = new System.Drawing.Point(207, 107);
+            this.plasmaBeamChkBox.Location = new System.Drawing.Point(207, 133);
             this.plasmaBeamChkBox.Name = "plasmaBeamChkBox";
             this.plasmaBeamChkBox.Size = new System.Drawing.Size(199, 20);
             this.plasmaBeamChkBox.TabIndex = 12;
@@ -318,7 +321,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chargeBeamChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chargeBeamChkBox.Location = new System.Drawing.Point(207, 133);
+            this.chargeBeamChkBox.Location = new System.Drawing.Point(207, 159);
             this.chargeBeamChkBox.Name = "chargeBeamChkBox";
             this.chargeBeamChkBox.Size = new System.Drawing.Size(199, 20);
             this.chargeBeamChkBox.TabIndex = 14;
@@ -346,7 +349,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grappleBeamChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.grappleBeamChkBox.Location = new System.Drawing.Point(207, 159);
+            this.grappleBeamChkBox.Location = new System.Drawing.Point(207, 185);
             this.grappleBeamChkBox.Name = "grappleBeamChkBox";
             this.grappleBeamChkBox.Size = new System.Drawing.Size(199, 20);
             this.grappleBeamChkBox.TabIndex = 16;
@@ -374,7 +377,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.wavebusterChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.wavebusterChkBox.Location = new System.Drawing.Point(207, 185);
+            this.wavebusterChkBox.Location = new System.Drawing.Point(207, 211);
             this.wavebusterChkBox.Name = "wavebusterChkBox";
             this.wavebusterChkBox.Size = new System.Drawing.Size(199, 20);
             this.wavebusterChkBox.TabIndex = 18;
@@ -402,7 +405,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.iceSpreaderChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iceSpreaderChkBox.Location = new System.Drawing.Point(207, 211);
+            this.iceSpreaderChkBox.Location = new System.Drawing.Point(207, 237);
             this.iceSpreaderChkBox.Name = "iceSpreaderChkBox";
             this.iceSpreaderChkBox.Size = new System.Drawing.Size(199, 20);
             this.iceSpreaderChkBox.TabIndex = 20;
@@ -430,7 +433,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flamethrowerChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.flamethrowerChkBox.Location = new System.Drawing.Point(207, 237);
+            this.flamethrowerChkBox.Location = new System.Drawing.Point(207, 263);
             this.flamethrowerChkBox.Name = "flamethrowerChkBox";
             this.flamethrowerChkBox.Size = new System.Drawing.Size(199, 20);
             this.flamethrowerChkBox.TabIndex = 22;
@@ -454,7 +457,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(8, 26);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(117, 20);
+            this.label4.Size = new System.Drawing.Size(99, 17);
             this.label4.TabIndex = 0;
             this.label4.Text = "HP : ??? / ???";
             // 
@@ -471,7 +474,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(426, 117);
+            this.groupBox1.Size = new System.Drawing.Size(428, 117);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ammos";
@@ -488,7 +491,7 @@
             this.comboBox3.Location = new System.Drawing.Point(266, 82);
             this.comboBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(151, 28);
+            this.comboBox3.Size = new System.Drawing.Size(151, 25);
             this.comboBox3.TabIndex = 9;
             // 
             // comboBox2
@@ -502,7 +505,7 @@
             this.comboBox2.Location = new System.Drawing.Point(266, 51);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(151, 28);
+            this.comboBox2.Size = new System.Drawing.Size(151, 25);
             this.comboBox2.TabIndex = 8;
             // 
             // comboBox1
@@ -517,7 +520,7 @@
             this.comboBox1.Location = new System.Drawing.Point(266, 20);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(151, 28);
+            this.comboBox1.Size = new System.Drawing.Size(151, 25);
             this.comboBox1.TabIndex = 7;
             // 
             // label3
@@ -525,7 +528,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 85);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(198, 20);
+            this.label3.Size = new System.Drawing.Size(166, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "Power Bombs : ??? / ???";
             // 
@@ -534,7 +537,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 54);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(232, 20);
+            this.label2.Size = new System.Drawing.Size(194, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "Morph Ball Bombs : ??? / ???";
             // 
@@ -543,7 +546,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 20);
+            this.label1.Size = new System.Drawing.Size(129, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Missiles : ??? / ???";
             // 
@@ -565,7 +568,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(432, 653);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(434, 661);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // groupBox3
@@ -583,11 +586,11 @@
             this.groupBox3.Controls.Add(this.lblArtifact_2);
             this.groupBox3.Controls.Add(this.lblArtifact_1);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(3, 517);
+            this.groupBox3.Location = new System.Drawing.Point(3, 525);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox3.Size = new System.Drawing.Size(426, 132);
+            this.groupBox3.Size = new System.Drawing.Size(428, 132);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Artifacts";
@@ -597,7 +600,7 @@
             this.lblArtifact_5.AutoSize = true;
             this.lblArtifact_5.Location = new System.Drawing.Point(7, 76);
             this.lblArtifact_5.Name = "lblArtifact_5";
-            this.lblArtifact_5.Size = new System.Drawing.Size(115, 20);
+            this.lblArtifact_5.Size = new System.Drawing.Size(98, 17);
             this.lblArtifact_5.TabIndex = 12;
             this.lblArtifact_5.Text = "Lifegiver : ???";
             // 
@@ -606,7 +609,7 @@
             this.lblArtifact_8.AutoSize = true;
             this.lblArtifact_8.Location = new System.Drawing.Point(7, 102);
             this.lblArtifact_8.Name = "lblArtifact_8";
-            this.lblArtifact_8.Size = new System.Drawing.Size(101, 20);
+            this.lblArtifact_8.Size = new System.Drawing.Size(87, 17);
             this.lblArtifact_8.TabIndex = 11;
             this.lblArtifact_8.Text = "Nature : ???";
             // 
@@ -615,7 +618,7 @@
             this.lblArtifact_9.AutoSize = true;
             this.lblArtifact_9.Location = new System.Drawing.Point(117, 102);
             this.lblArtifact_9.Name = "lblArtifact_9";
-            this.lblArtifact_9.Size = new System.Drawing.Size(80, 20);
+            this.lblArtifact_9.Size = new System.Drawing.Size(69, 17);
             this.lblArtifact_9.TabIndex = 10;
             this.lblArtifact_9.Text = "Sun : ???";
             // 
@@ -624,7 +627,7 @@
             this.lblArtifact_4.AutoSize = true;
             this.lblArtifact_4.Location = new System.Drawing.Point(250, 76);
             this.lblArtifact_4.Name = "lblArtifact_4";
-            this.lblArtifact_4.Size = new System.Drawing.Size(84, 20);
+            this.lblArtifact_4.Size = new System.Drawing.Size(71, 17);
             this.lblArtifact_4.TabIndex = 9;
             this.lblArtifact_4.Text = "Wild : ???";
             // 
@@ -633,7 +636,7 @@
             this.lblArtifact_6.AutoSize = true;
             this.lblArtifact_6.Location = new System.Drawing.Point(250, 50);
             this.lblArtifact_6.Name = "lblArtifact_6";
-            this.lblArtifact_6.Size = new System.Drawing.Size(107, 20);
+            this.lblArtifact_6.Size = new System.Drawing.Size(91, 17);
             this.lblArtifact_6.TabIndex = 8;
             this.lblArtifact_6.Text = "Warrior : ???";
             // 
@@ -642,7 +645,7 @@
             this.lblArtifact_7.AutoSize = true;
             this.lblArtifact_7.Location = new System.Drawing.Point(7, 24);
             this.lblArtifact_7.Name = "lblArtifact_7";
-            this.lblArtifact_7.Size = new System.Drawing.Size(99, 20);
+            this.lblArtifact_7.Size = new System.Drawing.Size(84, 17);
             this.lblArtifact_7.TabIndex = 7;
             this.lblArtifact_7.Text = "Chozo : ???";
             // 
@@ -651,7 +654,7 @@
             this.lblArtifact_10.AutoSize = true;
             this.lblArtifact_10.Location = new System.Drawing.Point(250, 102);
             this.lblArtifact_10.Name = "lblArtifact_10";
-            this.lblArtifact_10.Size = new System.Drawing.Size(95, 20);
+            this.lblArtifact_10.Size = new System.Drawing.Size(81, 17);
             this.lblArtifact_10.TabIndex = 6;
             this.lblArtifact_10.Text = "World : ???";
             // 
@@ -660,7 +663,7 @@
             this.lblArtifact_3.AutoSize = true;
             this.lblArtifact_3.Location = new System.Drawing.Point(7, 50);
             this.lblArtifact_3.Name = "lblArtifact_3";
-            this.lblArtifact_3.Size = new System.Drawing.Size(90, 20);
+            this.lblArtifact_3.Size = new System.Drawing.Size(77, 17);
             this.lblArtifact_3.TabIndex = 5;
             this.lblArtifact_3.Text = "Elder : ???";
             // 
@@ -669,7 +672,7 @@
             this.lblArtifact_12.AutoSize = true;
             this.lblArtifact_12.Location = new System.Drawing.Point(117, 24);
             this.lblArtifact_12.Name = "lblArtifact_12";
-            this.lblArtifact_12.Size = new System.Drawing.Size(117, 20);
+            this.lblArtifact_12.Size = new System.Drawing.Size(100, 17);
             this.lblArtifact_12.TabIndex = 4;
             this.lblArtifact_12.Text = "Newborn : ???";
             // 
@@ -678,7 +681,7 @@
             this.lblArtifact_11.AutoSize = true;
             this.lblArtifact_11.Location = new System.Drawing.Point(117, 50);
             this.lblArtifact_11.Name = "lblArtifact_11";
-            this.lblArtifact_11.Size = new System.Drawing.Size(90, 20);
+            this.lblArtifact_11.Size = new System.Drawing.Size(76, 17);
             this.lblArtifact_11.TabIndex = 3;
             this.lblArtifact_11.Text = "Spirit : ???";
             // 
@@ -687,7 +690,7 @@
             this.lblArtifact_2.AutoSize = true;
             this.lblArtifact_2.Location = new System.Drawing.Point(117, 76);
             this.lblArtifact_2.Name = "lblArtifact_2";
-            this.lblArtifact_2.Size = new System.Drawing.Size(114, 20);
+            this.lblArtifact_2.Size = new System.Drawing.Size(98, 17);
             this.lblArtifact_2.TabIndex = 2;
             this.lblArtifact_2.Text = "Strength : ???";
             // 
@@ -696,27 +699,43 @@
             this.lblArtifact_1.AutoSize = true;
             this.lblArtifact_1.Location = new System.Drawing.Point(250, 24);
             this.lblArtifact_1.Name = "lblArtifact_1";
-            this.lblArtifact_1.Size = new System.Drawing.Size(90, 20);
+            this.lblArtifact_1.Size = new System.Drawing.Size(78, 17);
             this.lblArtifact_1.TabIndex = 1;
             this.lblArtifact_1.Text = "Truth : ???";
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnCount = 4;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.fusionSuitChkBox, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.checkBox1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label26, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label5, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(432, 33);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(434, 33);
             this.tableLayoutPanel2.TabIndex = 2;
+            // 
+            // fusionSuitChkBox
+            // 
+            this.fusionSuitChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fusionSuitChkBox.Location = new System.Drawing.Point(119, 2);
+            this.fusionSuitChkBox.Margin = new System.Windows.Forms.Padding(2);
+            this.fusionSuitChkBox.Name = "fusionSuitChkBox";
+            this.fusionSuitChkBox.Size = new System.Drawing.Size(113, 29);
+            this.fusionSuitChkBox.TabIndex = 3;
+            this.fusionSuitChkBox.Text = "Fusion Suit";
+            this.fusionSuitChkBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.fusionSuitChkBox.UseVisualStyleBackColor = true;
+            this.fusionSuitChkBox.CheckedChanged += new System.EventHandler(this.fusionSuitChkBox_CheckedChanged);
             // 
             // checkBox1
             // 
@@ -733,35 +752,38 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // label26
-            // 
-            this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label26.Location = new System.Drawing.Point(237, 0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(192, 33);
-            this.label26.TabIndex = 1;
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.Location = new System.Drawing.Point(120, 0);
+            this.label5.Location = new System.Drawing.Point(237, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(111, 33);
             this.label5.TabIndex = 2;
             this.label5.Text = "00:00:00.000";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // scanVisorChkBox
+            // 
+            this.scanVisorChkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.scanVisorChkBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.scanVisorChkBox.Location = new System.Drawing.Point(207, 3);
+            this.scanVisorChkBox.Name = "scanVisorChkBox";
+            this.scanVisorChkBox.Size = new System.Drawing.Size(199, 20);
+            this.scanVisorChkBox.TabIndex = 25;
+            this.scanVisorChkBox.Text = "Scan Visor";
+            this.scanVisorChkBox.UseVisualStyleBackColor = true;
+            this.scanVisorChkBox.CheckedChanged += new System.EventHandler(this.scanVisorChkBox_CheckedChanged);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGoldenrodYellow;
-            this.ClientSize = new System.Drawing.Size(432, 653);
+            this.ClientSize = new System.Drawing.Size(434, 661);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
@@ -814,7 +836,6 @@
         private System.Windows.Forms.Label lblArtifact_3;
         private System.Windows.Forms.Label lblArtifact_12;
         private System.Windows.Forms.Label lblArtifact_11;
-        private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.CheckBox spaceJumpBootsChkBox;
         private System.Windows.Forms.CheckBox xrayVisorChkBox;
@@ -838,6 +859,8 @@
         private System.Windows.Forms.CheckBox phazonSuitChkBox;
         private System.Windows.Forms.CheckBox flamethrowerChkBox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox fusionSuitChkBox;
+        private System.Windows.Forms.CheckBox scanVisorChkBox;
     }
 }
 

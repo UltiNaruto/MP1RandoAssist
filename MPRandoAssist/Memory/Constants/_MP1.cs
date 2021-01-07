@@ -9,6 +9,7 @@
         internal const long OFF_CPLAYERSTATE = 0x8B8;
         internal const long OFF_HEALTH = 0x0C;
         internal const long OFF_CRITICAL_HEALTH = OFF_HEALTH + 4;
+        internal const long OFF_CURRENT_SUIT_VISUAL = 0x20;
         internal const long OFF_POWERBEAM_OBTAINED = 0x2C;
         internal const long OFF_ICEBEAM_OBTAINED = 0x34;
         internal const long OFF_WAVEBEAM_OBTAINED = 0x3C;
@@ -60,11 +61,13 @@
         internal abstract ushort MaxHealth { get; }
         internal abstract long IGT { get; set; }
         internal abstract string IGTAsStr { get; }
+        internal abstract uint CurrentSuitVisual { get; set; }
 
         internal abstract uint MorphBallBombs { get; set; }
         internal abstract uint MaxMorphBallBombs { get; }
         internal abstract uint Missiles { get; set; }
         internal abstract uint MaxMissiles { get; set; }
+        internal abstract bool HaveScanVisor { get; set; }
         internal abstract uint PowerBombs { get; set; }
         internal abstract uint MaxPowerBombs { get; set; }
         internal abstract bool HaveIceBeam { get; set; }

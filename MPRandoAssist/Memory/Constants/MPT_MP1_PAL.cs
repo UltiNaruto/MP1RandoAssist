@@ -115,6 +115,22 @@ namespace Prime.Memory.Constants
             }
         }
 
+        internal override uint CurrentSuitVisual
+        {
+            get
+            {
+                if (CPlayerState == -1)
+                    return 0;
+                return Dolphin.ReadUInt32(CPlayerState + OFF_CURRENT_SUIT_VISUAL);
+            }
+            set
+            {
+                if (CPlayerState == -1)
+                    return;
+                Dolphin.WriteUInt32(CPlayerState + OFF_CURRENT_SUIT_VISUAL, value);
+            }
+        }
+
         internal override uint MorphBallBombs
         {
             get
@@ -171,6 +187,23 @@ namespace Prime.Memory.Constants
                 if (CPlayerState == -1)
                     return;
                 Dolphin.WriteUInt32(CPlayerState + OFF_MAX_MISSILES, (byte)value);
+            }
+        }
+
+        internal override bool HaveScanVisor
+        {
+            get
+            {
+                if (CPlayerState == -1)
+                    return false;
+                return Dolphin.ReadUInt32(CPlayerState + OFF_SCANVISOR_OBTAINED) > 0;
+            }
+
+            set
+            {
+                if (CPlayerState == -1)
+                    return;
+                Dolphin.WriteUInt32(CPlayerState + OFF_SCANVISOR_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 

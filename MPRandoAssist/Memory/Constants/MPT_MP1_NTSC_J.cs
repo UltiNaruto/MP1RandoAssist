@@ -2,12 +2,23 @@
 
 namespace Prime.Memory.Constants
 {
-    internal class MP1_NTSC_1_02 : _MP1
+    internal class MPT_MP1_NTSC_J : _MP1
     {
-        internal const long OFF_CGAMEGLOBALOBJECTS = 0x4587F8;
+        internal const long OFF_CGAMEGLOBALOBJECTS = 0x4DEF10;
         internal const long OFF_CGAMESTATE = OFF_CGAMEGLOBALOBJECTS + 0x134;
-        internal const long OFF_CSTATEMANAGER = 0x45B208;
-        internal const long OFF_MORPHBALLBOMBS_COUNT = 0x458D78;
+        internal const long OFF_CSTATEMANAGER = 0x4BF69C;
+        internal const long OFF_MORPHBALLBOMBS_COUNT = 0x4C0F20;
+
+        internal override long CWorld
+        {
+            get
+            {
+                long result = Dolphin.ReadUInt32(GC.RAMBaseAddress + OFF_CSTATEMANAGER + OFF_CWORLD);
+                if (result < GC.RAMBaseAddress)
+                    return -1;
+                return result;
+            }
+        }
 
         internal override long CGameState
         {
@@ -27,21 +38,7 @@ namespace Prime.Memory.Constants
                 long result = Dolphin.ReadUInt32(GC.RAMBaseAddress + OFF_CSTATEMANAGER + OFF_CPLAYERSTATE);
                 if (result < GC.RAMBaseAddress)
                     return -1;
-                result = Dolphin.ReadUInt32(result);
-                if (result < GC.RAMBaseAddress)
-                    return -1;
-                return result;
-            }
-        }
-
-        internal override long CWorld
-        {
-            get
-            {
-                long result = Dolphin.ReadUInt32(GC.RAMBaseAddress + OFF_CSTATEMANAGER + OFF_CWORLD);
-                if (result < GC.RAMBaseAddress)
-                    return -1;
-                return result;
+                return result + 4;
             }
         }
 
@@ -71,13 +68,13 @@ namespace Prime.Memory.Constants
             {
                 if (CPlayerState == -1)
                     return 0;
-                return (ushort)Dolphin.ReadFloat32(CPlayerState + OFF_HEALTH);
+                return (ushort)Dolphin.ReadFloat32((CPlayerState - 4) + OFF_HEALTH);
             }
             set
             {
                 if (CPlayerState == -1)
                     return;
-                Dolphin.WriteFloat32(CPlayerState + OFF_HEALTH, (float)value);
+                Dolphin.WriteFloat32((CPlayerState - 4) + OFF_HEALTH, (float)value);
             }
         }
 
@@ -87,7 +84,7 @@ namespace Prime.Memory.Constants
             {
                 if (CPlayerState == -1)
                     return 0;
-                return (ushort)(Dolphin.ReadUInt8(CPlayerState + OFF_ENERGYTANKS_OBTAINED) * 100 + 99);
+                return (ushort)(Dolphin.ReadUInt32(CPlayerState + OFF_ENERGYTANKS_OBTAINED) * 100 + 99);
             }
         }
 
@@ -97,7 +94,7 @@ namespace Prime.Memory.Constants
             {
                 if (CGameState == -1)
                     return -1;
-                return (long)(Dolphin.ReadFloat64(CGameState + OFF_PLAYTIME) * 1000);
+                return (long)(Dolphin.ReadFloat64(CGameState + OFF_PLAYTIME + 8) * 1000);
             }
 
             set
@@ -115,6 +112,22 @@ namespace Prime.Memory.Constants
                 if (IGT == -1)
                     return "00:00:00.000";
                 return String.Format("{0:00}:{1:00}:{2:00}.{3:000}", IGT / (60 * 60 * 1000), (IGT / (60 * 1000)) % 60, (IGT / 1000) % 60, IGT % 1000);
+            }
+        }
+
+        internal override uint CurrentSuitVisual
+        {
+            get
+            {
+                if (CPlayerState == -1)
+                    return 0;
+                return Dolphin.ReadUInt32(CPlayerState + OFF_CURRENT_SUIT_VISUAL);
+            }
+            set
+            {
+                if (CPlayerState == -1)
+                    return;
+                Dolphin.WriteUInt32(CPlayerState + OFF_CURRENT_SUIT_VISUAL, value);
             }
         }
 
@@ -174,6 +187,23 @@ namespace Prime.Memory.Constants
                 if (CPlayerState == -1)
                     return;
                 Dolphin.WriteUInt32(CPlayerState + OFF_MAX_MISSILES, (byte)value);
+            }
+        }
+
+        internal override bool HaveScanVisor
+        {
+            get
+            {
+                if (CPlayerState == -1)
+                    return false;
+                return Dolphin.ReadUInt32(CPlayerState + OFF_SCANVISOR_OBTAINED) > 0;
+            }
+
+            set
+            {
+                if (CPlayerState == -1)
+                    return;
+                Dolphin.WriteUInt32(CPlayerState + OFF_SCANVISOR_OBTAINED, (byte)(value ? 1 : 0));
             }
         }
 

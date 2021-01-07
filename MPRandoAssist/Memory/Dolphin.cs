@@ -1,8 +1,7 @@
 ﻿using Prime.Memory.Constants;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
+using System.IO.MemoryMappedFiles;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -14,9 +13,7 @@ namespace Prime.Memory
         private static Process dolphin = null;
         private static bool Is32BitProcess = false;
         private static long RAMBaseAddr = 0;
-        private static IntPtr GameWindowHandle = IntPtr.Zero;
         private static _MP1 _MetroidPrime = null;
-        private static Dictionary<String, Image> img = new Dictionary<String, Image>();
 
         public static _MP1 MetroidPrime
         {
@@ -38,7 +35,7 @@ namespace Prime.Memory
         {
             get
             {
-                return Encoding.ASCII.GetString(Utils.Read(dolphin, RAMBaseAddr, 6)).Trim('\0');
+                return Encoding.ASCII.GetString(Read(0x80000000, 6)).Trim('\0');
             }
         }
 
@@ -46,7 +43,7 @@ namespace Prime.Memory
         {
             get
             {
-                return (int)Utils.Read(dolphin, RAMBaseAddr + 7, 1)[0];
+                return (int)ReadInt8(0x80000007);
             }
         }
 
@@ -64,7 +61,6 @@ namespace Prime.Memory
             dolphin = Process.GetProcessesByName("dolphin").Length == 0 ? null : Process.GetProcessesByName("dolphin").First();
             if (dolphin == null)
                 return false;
-            Is32BitProcess = dolphin.MainModule.BaseAddress.ToInt64() < UInt32.MaxValue;
             return true;
         }
 
@@ -72,57 +68,28 @@ namespace Prime.Memory
         {
             RAMBaseAddr = 0;
             var MaxAddress = Is32BitProcess ? Int32.MaxValue : Int64.MaxValue;
-            long address = 0;
+            long address = Is32BitProcess ? 0 : 0x7ffe0000;
             Utils.MEMORY_BASIC_INFORMATION m;
             do
             {
+                try {
+                    MemoryMappedFile.OpenExisting("dolphin-emu." + dolphin.Id).Dispose();
+                } catch {
+                    return false;
+                }
                 m = Utils.CS_VirtualQuery(dolphin, address);
-				if (m.AllocationBase == IntPtr.Zero && m.Protect == Utils.AllocationProtectEnum.PAGE_NOACCESS)
+                if (m.Type == Utils.TypeEnum.MEM_MAPPED &&
+                    m.RegionSize.ToInt64() == 0x2000000)
                 {
-                    if (address == (long)m.BaseAddress + (long)m.RegionSize)
-                        break;
-                    address = (long)m.BaseAddress + (long)m.RegionSize;
-                    continue;
+                    RAMBaseAddr = Is32BitProcess ? m.AllocationBase.ToInt32() : m.AllocationBase.ToInt64();
+                    if (!IsValidGameCode(GameCode))
+                        RAMBaseAddr = 0;
                 }
-                if (m.Type != Utils.TypeEnum.MEM_MAPPED)
-                {
-                    if (address == (long)m.BaseAddress + (long)m.RegionSize)
-                        break;
-                    address = (long)m.BaseAddress + (long)m.RegionSize;
-                    continue;
-                }
-                if (m.AllocationProtect != Utils.AllocationProtectEnum.PAGE_READWRITE)
-                {
-                    if (address == (long)m.BaseAddress + (long)m.RegionSize)
-                        break;
-                    address = (long)m.BaseAddress + (long)m.RegionSize;
-                    continue;
-                }
-                if (m.State == Utils.StateEnum.MEM_FREE)
-                {
-                    if (address == (long)m.BaseAddress + (long)m.RegionSize)
-                        break;
-                    address = (long)m.BaseAddress + (long)m.RegionSize;
-                    continue;
-                }
-                if (m.RegionSize.ToInt64() <= 0x20000)
-                {
-                    if (address == (long)m.BaseAddress + (long)m.RegionSize)
-                        break;
-                    address = (long)m.BaseAddress + (long)m.RegionSize;
-                    continue;
-                }
-                RAMBaseAddr = Is32BitProcess ? m.AllocationBase.ToInt32() : m.AllocationBase.ToInt64();
-                if (!IsValidGameCode(GameCode))
-                {
-                    RAMBaseAddr = 0;
-                    if (address == (long)m.BaseAddress + (long)m.RegionSize)
-                        break;
-                    address = (long)m.BaseAddress + (long)m.RegionSize;
-                    continue;
-                }
-                break;
-            } while (address <= MaxAddress);
+                if (address == (long)m.BaseAddress + (long)m.RegionSize)
+                    break;
+                address = (long)m.BaseAddress + (long)m.RegionSize;
+                Thread.Sleep(1);
+            } while (address <= MaxAddress && RAMBaseAddr == 0);
             return RAMBaseAddr != 0;
         }
 
@@ -134,31 +101,37 @@ namespace Prime.Memory
                 if (GameCode[3] == 'E')
                 {
                     if (GameVersion == 0)
-                        _MetroidPrime = new MP1_NTSC_1_00();
+                        _MetroidPrime = new MP1_NTSC_U_1_00();
                     if (GameVersion == 2)
-                        _MetroidPrime = new MP1_NTSC_1_02();
+                        _MetroidPrime = new MP1_NTSC_U_1_02();
+                    if (GameVersion == 48)
+                        _MetroidPrime = new MP1_NTSC_K();
                 }
                 if (GameCode[3] == 'P')
                     _MetroidPrime = new MP1_PAL();
+                if (GameCode[3] == 'J')
+                    _MetroidPrime = new MP1_NTSC_J();
             }
             if (GameCode.Substring(0, 3) == "R3M")
             {
                 if (GameCode[3] == 'E')
-                    _MetroidPrime = new MPT_MP1_NTSC();
+                    _MetroidPrime = new MPT_MP1_NTSC_U();
                 if (GameCode[3] == 'P')
                     _MetroidPrime = new MPT_MP1_PAL();
             }
             return _MetroidPrime != null;
         }
 
-        internal static Byte[] Read(long gc_address, int size, bool BigEndian=false)
+        internal static Byte[] Read(long gc_address, int size, bool BigEndian = false)
         {
             try
             {
                 long pc_address = RAMBaseAddr + (gc_address - Constants.GC.RAMBaseAddress);
                 byte[] datas = Utils.Read(dolphin, pc_address, size);
                 return BigEndian ? datas.Reverse().ToArray() : datas;
-            } catch {
+            }
+            catch
+            {
                 return null;
             }
         }
@@ -243,13 +216,14 @@ namespace Prime.Memory
             return BitConverter.ToDouble(datas, 0);
         }
 
-        internal static void Write(long gc_address, Byte[] datas, bool BigEndian=false)
+        internal static void Write(long gc_address, Byte[] datas, bool BigEndian = false)
         {
             try
             {
                 long pc_address = RAMBaseAddr + (gc_address - Constants.GC.RAMBaseAddress);
                 Utils.Write(dolphin, pc_address, BigEndian ? datas.Reverse().ToArray() : datas);
-            } catch {}
+            }
+            catch { }
         }
 
         internal static void WriteUInt8(long gc_address, Byte value)

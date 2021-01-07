@@ -26,7 +26,6 @@ namespace MPRandoAssist
             {
                 this.BackColor = this.button1.BackColor = this.button2.BackColor = this.numericUpDown1.BackColor = Color.Black;
                 this.ForeColor = this.button1.ForeColor = this.button2.ForeColor = this.numericUpDown1.BackColor = Color.Gray;
-
             }
             else
             {

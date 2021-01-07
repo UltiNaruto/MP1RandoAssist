@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Prime.Memory
 {
@@ -77,6 +73,8 @@ namespace Prime.Memory
 
         internal static Byte[] Read(Process proc, long address, int size)
         {
+            if (proc.HasExited)
+                return null;
             if (size == 0)
                 return new byte[0];
             byte[] datas = new byte[size];

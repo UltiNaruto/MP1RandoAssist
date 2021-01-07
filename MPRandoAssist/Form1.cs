@@ -101,40 +101,26 @@ namespace MPRandoAssist
                 var Worker = new BackgroundWorker();
                 Worker.DoWork += (s, ev) =>
                 {
+                    emuInit = Dolphin.Init();
+                    if (emuInit)
+                    {
+                        gameInit = Dolphin.GameInit();
+                        if (gameInit)
+                        {
+                            detectVersion = Dolphin.InitMP();
+                        }
+                    }
+
                     while (!this.Exiting)
                     {
                         try
                         {
-                            if (!emuInit)
-                            {
-                                emuInit = Dolphin.Init();
-                                if (!emuInit)
-                                {
-                                    Thread.Sleep(1);
-                                    continue;
-                                }
-                            }
-                            if (emuInit && !gameInit)
-                            {
-                                gameInit = Dolphin.GameInit();
-                                if (!gameInit)
-                                {
-                                    Thread.Sleep(1);
-                                    continue;
-                                }
-                            }
-                            if (emuInit && gameInit && !detectVersion)
-                            {
-                                detectVersion = Dolphin.InitMP();
-                                if (!detectVersion)
-                                {
-                                    Thread.Sleep(1);
-                                    continue;
-                                }
-                            }
                             if (emuInit && gameInit && detectVersion)
                             {
-                                if (Dolphin.MetroidPrime.IGT == 0)
+                                if (Dolphin.GameCode == "")
+                                    throw new Exception();
+
+                                if (Dolphin.MetroidPrime.Health == 0)
                                 {
                                     Thread.Sleep(1);
                                     continue;
@@ -150,6 +136,7 @@ namespace MPRandoAssist
                                 if (!EditingInventory)
                                 {
                                     this.morphBallChkBox.SetChecked(Dolphin.MetroidPrime.HaveMorphBall);
+                                    this.scanVisorChkBox.SetChecked(Dolphin.MetroidPrime.HaveScanVisor);
                                     this.thermalVisorChkBox.SetChecked(Dolphin.MetroidPrime.HaveThermalVisor);
                                     this.xrayVisorChkBox.SetChecked(Dolphin.MetroidPrime.HaveXRayVisor);
                                     this.morphBallBombsChkBox.SetChecked(Dolphin.MetroidPrime.HaveMorphBallBombs);
@@ -176,9 +163,18 @@ namespace MPRandoAssist
                                     ((Label)this.groupBox3.Controls["lblArtifact_" + (i + 1)]).SetTextSafely(this.groupBox3.Controls["lblArtifact_" + (i + 1)].Text.Split(':')[0] + ": " + (Dolphin.MetroidPrime.Artifacts(i) ? OBTAINED : UNOBTAINED));
                                 }
                                 HandleRefillMissiles(comboBox1.GetSelectedIndex());
-                                if (comboBox2.GetSelectedIndex() == 1)
+                                if (comboBox2.GetText() == "Instant Refill")
                                     Dolphin.MetroidPrime.MorphBallBombs = Dolphin.MetroidPrime.MaxMorphBallBombs;
                                 HandleRefillPowerBombs(comboBox3.GetSelectedIndex());
+                            }
+                            else
+                            {
+                                if (!this.Exiting)
+                                {
+                                    new Thread(() => MessageBox.Show("Either Dolphin or the game is not running!\r\nExiting...")).Start();
+                                    SafeClose();
+                                    this.Exiting = true;
+                                }
                             }
                         }
                         catch
@@ -200,6 +196,19 @@ namespace MPRandoAssist
                 MessageBox.Show(ex.Message);
                 this.Close();
             }
+        }
+
+        private void HandleSuitVisualChange()
+        {
+            Dolphin.MetroidPrime.CurrentSuitVisual = 0;
+            if (this.variaSuitChkBox.IsChecked())
+                Dolphin.MetroidPrime.CurrentSuitVisual = 2;
+            if (this.gravitySuitChkBox.IsChecked())
+                Dolphin.MetroidPrime.CurrentSuitVisual = 1;
+            if (this.phazonSuitChkBox.IsChecked())
+                Dolphin.MetroidPrime.CurrentSuitVisual = 3;
+            if (this.fusionSuitChkBox.Checked)
+                Dolphin.MetroidPrime.CurrentSuitVisual |= 4;
         }
 
         private void HandleRefillMissiles(int type)
@@ -377,6 +386,7 @@ namespace MPRandoAssist
         {
             EditingInventory = true;
             Dolphin.MetroidPrime.HaveVariaSuit = variaSuitChkBox.Checked;
+            HandleSuitVisualChange();
             EditingInventory = false;
         }
 
@@ -384,6 +394,7 @@ namespace MPRandoAssist
         {
             EditingInventory = true;
             Dolphin.MetroidPrime.HaveGravitySuit = gravitySuitChkBox.Checked;
+            HandleSuitVisualChange();
             EditingInventory = false;
         }
 
@@ -391,6 +402,7 @@ namespace MPRandoAssist
         {
             EditingInventory = true;
             Dolphin.MetroidPrime.HavePhazonSuit = phazonSuitChkBox.Checked;
+            HandleSuitVisualChange();
             EditingInventory = false;
         }
 
@@ -398,6 +410,13 @@ namespace MPRandoAssist
         {
             EditingInventory = true;
             Dolphin.MetroidPrime.HaveSpaceJumpBoots = spaceJumpBootsChkBox.Checked;
+            EditingInventory = false;
+        }
+
+        private void scanVisorChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            EditingInventory = true;
+            Dolphin.MetroidPrime.HaveScanVisor = scanVisorChkBox.Checked;
             EditingInventory = false;
         }
 
@@ -469,6 +488,11 @@ namespace MPRandoAssist
             EditingInventory = true;
             Dolphin.MetroidPrime.HaveFlamethrower = flamethrowerChkBox.Checked;
             EditingInventory = false;
+        }
+
+        private void fusionSuitChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            HandleSuitVisualChange();
         }
     }
 }

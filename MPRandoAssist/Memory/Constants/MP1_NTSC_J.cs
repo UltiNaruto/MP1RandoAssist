@@ -87,7 +87,7 @@ namespace Prime.Memory.Constants
             {
                 if (CPlayerState == -1)
                     return 0;
-                return (ushort)(Dolphin.ReadUInt8(CPlayerState + OFF_ENERGYTANKS_OBTAINED) * 100 + 99);
+                return (ushort)(Dolphin.ReadUInt32(CPlayerState + OFF_ENERGYTANKS_OBTAINED) * 100 + 99);
             }
         }
 

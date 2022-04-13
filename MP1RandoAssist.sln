@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MP1RandoAssist", "MP1RandoAssist\MP1RandoAssist.csproj", "{E76FE249-0CBC-4281-A40C-3533B7711456}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug_Linux|Any CPU = Debug_Linux|Any CPU
+		Debug_Windows|Any CPU = Debug_Windows|Any CPU
+		Release_Linux|Any CPU = Release_Linux|Any CPU
+		Release_Windows|Any CPU = Release_Windows|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E76FE249-0CBC-4281-A40C-3533B7711456}.Debug_Linux|Any CPU.ActiveCfg = Debug_Linux|Any CPU
+		{E76FE249-0CBC-4281-A40C-3533B7711456}.Debug_Linux|Any CPU.Build.0 = Debug_Linux|Any CPU
+		{E76FE249-0CBC-4281-A40C-3533B7711456}.Debug_Windows|Any CPU.ActiveCfg = Debug_Windows|Any CPU
+		{E76FE249-0CBC-4281-A40C-3533B7711456}.Debug_Windows|Any CPU.Build.0 = Debug_Windows|Any CPU
+		{E76FE249-0CBC-4281-A40C-3533B7711456}.Release_Linux|Any CPU.ActiveCfg = Release_Linux|Any CPU
+		{E76FE249-0CBC-4281-A40C-3533B7711456}.Release_Linux|Any CPU.Build.0 = Release_Linux|Any CPU
+		{E76FE249-0CBC-4281-A40C-3533B7711456}.Release_Windows|Any CPU.ActiveCfg = Release_Windows|Any CPU
+		{E76FE249-0CBC-4281-A40C-3533B7711456}.Release_Windows|Any CPU.Build.0 = Release_Windows|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A7CEF670-00B5-41C7-A513-415F0D705CE8}
+	EndGlobalSection
+EndGlobal

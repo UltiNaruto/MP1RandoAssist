@@ -8,7 +8,7 @@ namespace Wrapper.Prime
         protected const long OFF_CGAMESTATE = OFF_CGAMEGLOBALOBJECTS + 0x134;
         protected const long OFF_CSTATEMANAGER = 0x804C335C;
         protected const long OFF_MORPHBALLBOMBS_COUNT = 0x804C4E60;
-        protected const long OFF_BASEHEALTH = 0x805CA220;
+        protected const long OFF_BASEHEALTH = 0x805CA224;
         protected const long OFF_ENERGYTANK_CAPACITY = OFF_BASEHEALTH + 4;
 
         protected override long CWorld

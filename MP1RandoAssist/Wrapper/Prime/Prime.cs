@@ -2,6 +2,8 @@
 {
     public class Prime : Metroid
     {
+        protected const int CONST_ARTIFACT_TEMPLE_AREA_IDX = 16;
+
         protected const long OFF_CGAMESTATE_WORLDLAYERSTATE_ARRAY = 0x94;
         protected const long OFF_CGAMESTATE_PLAYTIME = 0xA0;
         protected const long OFF_CPLAYER = 0x84C;
@@ -271,32 +273,32 @@
                 case "Flamethrower":
                     return HaveFlamethrower;
                 case "Truth":
-                    if (GetLayerCount(0x39F2DE28, 16) == 25)
-                        return IsLayerEnabled(0x39F2DE28, 16, 24);
+                    if (GetLayerCount(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX) == 24)
+                        return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 23);
                     else
-                        return !IsLayerEnabled(0x39F2DE28, 16, 18);
+                        return !IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 18);
                 case "Strength":
-                    return IsLayerEnabled(0x39F2DE28, 16, 2);
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 2);
                 case "Elder":
-                    return IsLayerEnabled(0x39F2DE28, 16, 3);
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 3);
                 case "Wild":
-                    return IsLayerEnabled(0x39F2DE28, 16, 4);
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 4);
                 case "Lifegiver":
-                    return IsLayerEnabled(0x39F2DE28, 16, 5);
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 5);
                 case "Warrior":
-                    return IsLayerEnabled(0x39F2DE28, 16, 6);
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 6);
                 case "Chozo":
-                    return IsLayerEnabled(0x39F2DE28, 16, 7);
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 7);
                 case "Nature":
-                    return IsLayerEnabled(0x39F2DE28, 16, 8);
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 8);
                 case "Sun":
-                    return IsLayerEnabled(0x39F2DE28, 16, 9);
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 9);
                 case "World":
-                    return IsLayerEnabled(0x39F2DE28, 16, 10);
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 10);
                 case "Spirit":
-                    return IsLayerEnabled(0x39F2DE28, 16, 11);
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 11);
                 case "Newborn":
-                    return IsLayerEnabled(0x39F2DE28, 16, 12);
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 12);
                 default:
                     return false;
             }
@@ -353,32 +355,32 @@
                 case "Flamethrower":
                     return HaveFlamethrower ? 1 : 0;
                 case "Truth":
-                    if(GetLayerCount(0x39F2DE28, 16) == 25)
-                        return IsLayerEnabled(0x39F2DE28, 16, 24) ? 1 : 0;
+                    if(GetLayerCount(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX) == 24)
+                        return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 23) ? 1 : 0;
                     else
-                        return !IsLayerEnabled(0x39F2DE28, 16, 18) ? 1 : 0;
+                        return !IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 18) ? 1 : 0;
                 case "Strength":
-                    return IsLayerEnabled(0x39F2DE28, 16, 2) ? 1 : 0;
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 2) ? 1 : 0;
                 case "Elder":
-                    return IsLayerEnabled(0x39F2DE28, 16, 3) ? 1 : 0;
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 3) ? 1 : 0;
                 case "Wild":
-                    return IsLayerEnabled(0x39F2DE28, 16, 4) ? 1 : 0;
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 4) ? 1 : 0;
                 case "Lifegiver":
-                    return IsLayerEnabled(0x39F2DE28, 16, 5) ? 1 : 0;
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 5) ? 1 : 0;
                 case "Warrior":
-                    return IsLayerEnabled(0x39F2DE28, 16, 6) ? 1 : 0;
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 6) ? 1 : 0;
                 case "Chozo":
-                    return IsLayerEnabled(0x39F2DE28, 16, 7) ? 1 : 0;
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 7) ? 1 : 0;
                 case "Nature":
-                    return IsLayerEnabled(0x39F2DE28, 16, 8) ? 1 : 0;
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 8) ? 1 : 0;
                 case "Sun":
-                    return IsLayerEnabled(0x39F2DE28, 16, 9) ? 1 : 0;
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 9) ? 1 : 0;
                 case "World":
-                    return IsLayerEnabled(0x39F2DE28, 16, 10) ? 1 : 0;
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 10) ? 1 : 0;
                 case "Spirit":
-                    return IsLayerEnabled(0x39F2DE28, 16, 11) ? 1 : 0;
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 11) ? 1 : 0;
                 case "Newborn":
-                    return IsLayerEnabled(0x39F2DE28, 16, 12) ? 1 : 0;
+                    return IsLayerEnabled(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 12) ? 1 : 0;
                 default:
                     return 0;
             }
@@ -471,95 +473,95 @@
                     SetArtifact(0, count > 0);
                     if (count > 0)
                     {
-                        if(GetLayerCount(0x39F2DE28, 16) == 25)
-                            EnableLayer(0x39F2DE28, 16, 24);
+                        if(GetLayerCount(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX) == 24)
+                            EnableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 23);
                         /*else
-                            DisableLayer(0x39F2DE28, 16, 18);*/
+                            DisableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 18);*/
                     }
                     else
                     {
-                        if (GetLayerCount(0x39F2DE28, 16) == 25)
-                            DisableLayer(0x39F2DE28, 16, 24);
+                        if (GetLayerCount(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX) == 24)
+                            DisableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 23);
                         /*else
-                            EnableLayer(0x39F2DE28, 16, 18);*/
+                            EnableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 18);*/
                     }
                     break;
                 case "Strength":
                     SetArtifact(1, count > 0);
                     if (count > 0)
-                        EnableLayer(0x39F2DE28, 16, 2);
+                        EnableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 2);
                     else
-                        DisableLayer(0x39F2DE28, 16, 2);
+                        DisableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 2);
                     break;
                 case "Elder":
                     SetArtifact(2, count > 0);
                     if (count > 0)
-                        EnableLayer(0x39F2DE28, 16, 3);
+                        EnableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 3);
                     else
-                        DisableLayer(0x39F2DE28, 16, 3);
+                        DisableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 3);
                     break;
                 case "Wild":
                     SetArtifact(3, count > 0);
                     if (count > 0)
-                        EnableLayer(0x39F2DE28, 16, 4);
+                        EnableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 4);
                     else
-                        DisableLayer(0x39F2DE28, 16, 4);
+                        DisableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 4);
                     break;
                 case "Lifegiver":
                     SetArtifact(4, count > 0);
                     if (count > 0)
-                        EnableLayer(0x39F2DE28, 16, 5);
+                        EnableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 5);
                     else
-                        DisableLayer(0x39F2DE28, 16, 5);
+                        DisableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 5);
                     break;
                 case "Warrior":
                     SetArtifact(5, count > 0);
                     if (count > 0)
-                        EnableLayer(0x39F2DE28, 16, 6);
+                        EnableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 6);
                     else
-                        DisableLayer(0x39F2DE28, 16, 6);
+                        DisableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 6);
                     break;
                 case "Chozo":
                     SetArtifact(6, count > 0);
                     if (count > 0)
-                        EnableLayer(0x39F2DE28, 16, 7);
+                        EnableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 7);
                     else
-                        DisableLayer(0x39F2DE28, 16, 7);
+                        DisableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 7);
                     break;
                 case "Nature":
                     SetArtifact(7, count > 0);
                     if (count > 0)
-                        EnableLayer(0x39F2DE28, 16, 8);
+                        EnableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 8);
                     else
-                        DisableLayer(0x39F2DE28, 16, 8);
+                        DisableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 8);
                     break;
                 case "Sun":
                     SetArtifact(8, count > 0);
                     if (count > 0)
-                        EnableLayer(0x39F2DE28, 16, 9);
+                        EnableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 9);
                     else
-                        DisableLayer(0x39F2DE28, 16, 9);
+                        DisableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 9);
                     break;
                 case "World":
                     SetArtifact(9, count > 0);
                     if (count > 0)
-                        EnableLayer(0x39F2DE28, 16, 10);
+                        EnableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 10);
                     else
-                        DisableLayer(0x39F2DE28, 16, 10);
+                        DisableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 10);
                     break;
                 case "Spirit":
                     SetArtifact(10, count > 0);
                     if (count > 0)
-                        EnableLayer(0x39F2DE28, 16, 11);
+                        EnableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 11);
                     else
-                        DisableLayer(0x39F2DE28, 16, 11);
+                        DisableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 11);
                     break;
                 case "Newborn":
                     SetArtifact(11, count > 0);
                     if (count > 0)
-                        EnableLayer(0x39F2DE28, 16, 12);
+                        EnableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 12);
                     else
-                        DisableLayer(0x39F2DE28, 16, 12);
+                        DisableLayer(0x39F2DE28, CONST_ARTIFACT_TEMPLE_AREA_IDX, 12);
                     break;
             }
         }
